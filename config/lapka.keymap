@@ -58,7 +58,7 @@
 
         nav_layer {
             bindings = <
-&tabber      &swapper_win &swapper_mac &none         &kp ESC           &kp ESC        &kp HOME       &kp END        &kp BSPC       &kp DEL
+&sk LC(TAB)  &sk LA(TAB)  &sk LG(TAB)  &none         &kp ESC           &kp ESC        &kp HOME       &kp END        &kp BSPC       &kp DEL
 &sk LGUI     &sk LALT     &sk LCTRL    &sk LSHFT     &kp RET           &kp RET        &kp LEFT       &kp DOWN       &kp UP         &kp RIGHT
 &kp LC(LG(LEFT))       &kp LC(LG(RIGHT))       &tog GAM     &kp PSCRN     &kp TAB           &kp TAB        &kp PG_UP      &kp PG_DN      &kp APOS       &kp KP_NUM
                           &trans      &trans      &trans          &trans       &trans       &trans

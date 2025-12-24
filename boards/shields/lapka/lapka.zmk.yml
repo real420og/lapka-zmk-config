@@ -1,0 +1,12 @@
+file_format: "1"
+id: lapka
+name: Lapka
+type: shield
+url: https://github.com/braindefender/lapka
+features:
+  - keys
+requires:
+  - pro_micro
+siblings:
+  - lapka_left
+  - lapka_right

@@ -26,6 +26,14 @@
 #define BSL RA(BSLH)
 #define NBSP RA(SPACE)
 
+// Media keys rebinds
+
+#define VOL_U C_VOL_UP
+#define VOL_D C_VOL_DN
+#define T_PRV C_PREV
+#define T_NXT C_NEXT
+#define T_PP  C_PP
+
 #define NSPC LC(LG(RIGHT))
 #define PSPC LC(LG(LEFT))
 
@@ -113,7 +121,7 @@
         )
 
         MODMORPH(
-            cm_ctrl,
+            cm_ctl,
             &sticky_forever LCTRL,
             &m_release_key_twice LCTRL,
             MOD_LCTL,
@@ -191,64 +199,64 @@
 
         def_layer {
             bindings = <
-_ Q          _ W          _ E          _ R         _ T             _ Y          _ U          _ I          _ O          _ P
-_ A          _ S          _ D          _ F         _ G             _ H          _ J          _ K          _ L          _ SEMI
-_ Z          _ X          _ C          _ V         _ B             _ N          _ M          _ COMMA      _ DOT        _ FSLH
-                          _ CAPS       _ SPACE     &la NAV         &la SYM      _ LSFT       _ RALT
+___ _ Q     _ W     _ E     _ R     _ T            _ Y     _ U    _ I     _ O    _ P     ___
+___ _ A     _ S     _ D     _ F     _ G            _ H     _ J    _ K     _ L    _ SEMI  ___
+___ _ Z     _ X     _ C     _ V     _ B            _ N     _ M    _ COMMA _ DOT  _ FSLH  ___
+                    _ CAPS  _ SPACE &la NAV        &la SYM _ LSFT _ RALT
             >;
         };
 
         gam_layer {
             bindings = <
-_ TAB        _ Q          _ W          _ E         _ R             ___          ___          _ UP         ___          _ TAB
-_ LSFT       _ A          _ S          _ D         _ F             ___          _ LEFT       _ DOWN       _ RIGHT      _ RSFT
-_ LCTRL      _ Z          _ X          _ C         _ V             ___          ___          ___          ___          _ RCTRL
-                          _ LALT       _ SPACE     &mo GFN         &tog GAM     _ SPACE      ______
+___ _ TAB   _ Q     _ W    _ E     _ R             ___      ___     _ UP    ___     _ TAB   ___
+___ _ LSFT  _ A     _ S    _ D     _ F             ___      _ LEFT  _ DOWN  _ RIGHT _ RSFT  ___
+___ _ LCTRL _ Z     _ X    _ C     _ V             ___      ___     ___     ___     _ RCTRL ___
+                    _ LALT _ SPACE &mo GFN         &tog GAM _ SPACE ______
             >;
         };
 
         gfn_layer {
             bindings = <
-_ N5         _ N1         _ N2         _ N3        _ N4            &out OUT_TOG &bt BT_SEL 0 &bt BT_SEL 1   &bt BT_SEL 2 &bt BT_CLR_ALL
-_ N0         _ N6         _ N7         _ N8        _ N9            ___          ___          ___            ___          ___
-_ G          _ J          _ I          _ M         _ T             _ KP_NUM     ___          ___            &sys_reset   &bootloader
-                          _ ESC        _ RET       ______          ______       ______       ___
+___ _ N5    _ N1    _ N2   _ N3    _ N4            &out OUT_TOG &bt BT_SEL 0 &bt BT_SEL 1   &bt BT_SEL 2 &bt BT_CLR_ALL ___
+___ _ N0    _ N6    _ N7   _ N8    _ N9            ___          ___          ___            ___          ___            ___
+___ _ G     _ J     _ I    _ M     _ T             _ KP_NUM     ___          ___            &sys_reset   &bootloader    ___
+                    _ ESC  _ RET   ______          ______       ______       ___
             >;
         };
 
         nav_layer {
             bindings = <
-&tabber      &swapper_win &swapper_mac ___         _ ESC           _ ESC        _ HOME       _ END        _ BSPC       _ DEL
-&cm_gui      &cm_alt      &cm_ctrl     &cm_sft     _ RET           _ RET        _ LEFT       _ DOWN       _ UP         _ RIGHT
-_ PSPC       _ NSPC       &tog GAM     _ PSCRN     _ TAB           _ TAB        _ PG_UP      _ PG_DN      _ APOS       _ KP_NUM
-                          &mo CMD      ______      ______          ______       ______       ______
+___ &tabber &swapper_win &swapper_mac ___     _ ESC           _ ESC   _ HOME  _ END   _ BSPC  _ DEL    ___
+___ &cm_gui &cm_alt      &cm_ctl      &cm_sft _ RET           _ RET   _ LEFT  _ DOWN  _ UP    _ RIGHT  ___
+___ _ PSPC  _ NSPC       &tog GAM     _ PSCRN _ TAB           _ TAB   _ PG_UP _ PG_DN _ APOS  _ KP_NUM ___
+                         &mo CMD      ______  ______          ______  ______  ______
             >;
         };
 
         sym_layer {
             bindings = <
-_ N1         _ N2         _ N3         _ N4        _ N5            _ N6         _ N7         _ N8         _ N9         _ N0
-_ SEMI       _ GRV        _ SQT        _ DQT       _ MINUS         _ PLUS       &cm_sft      &cm_ctrl     &cm_alt      &cm_gui
-_ BSL        ___          _ LS(LBKT)   _ LBKT      _ UNDER         _ EQUAL      _ RBKT       _ LS(RBKT)   _ PIP        _ BSLH
-                          ______       ______      ______          ______       ______       _ RALT
+___ _ N1    _ N2    _ N3       _ N4    _ N5            _ N6    _ N7    _ N8        _ N9   _ N0    ___
+___ _ SEMI  _ GRV   _ SQT      _ DQT   _ MINUS         _ PLUS  &cm_sft &cm_ctl    &cm_alt &cm_gui ___
+___ _ BSL   ___     _ LS(LBKT) _ LBKT  _ UNDER         _ EQUAL _ RBKT  _ LS(RBKT) _ PIP   _ BSLH  ___
+                    ______     ______  ______          ______  ______  _ RALT
             >;
         };
 
         num_layer {
             bindings = <
-_ KP_N1      _ KP_N2      _ KP_N3      _ KP_N4     _ KP_N5         _ KP_N6      _ KP_N7      _ KP_N8      _ KP_N9      _ KP_N0
-&cm_gui      &cm_alt      &cm_ctrl     &cm_sft     _ F11           _ F12        &cm_sft      &cm_ctrl     &cm_alt      &cm_gui
-_ F1         _ F2         _ F3         _ F4        _ F5            _ F6         _ F7         _ F8         _ F9         _ F10
-                          ______       ______      ______          ______       ______       ______
+___ _ KP_N1 _ KP_N2 _ KP_N3 _ KP_N4 _ KP_N5         _ KP_N6 _ KP_N7 _ KP_N8 _ KP_N9 _ KP_N0 ___
+___ &cm_gui &cm_alt &cm_ctl &cm_sft _ F11           _ F12   &cm_sft &cm_ctl &cm_alt &cm_gui ___
+___ _ F1    _ F2    _ F3    _ F4    _ F5            _ F6    _ F7    _ F8    _ F9    _ F10   ___
+                    ______  ______  ______          ______  ______  ______
             >;
         };
 
         cmd_layer {
             bindings = <
-_ MEH(Q)     _ MEH(W)     _ MEH(E)     _ MEH(R)    _ MEH(T)        _ MEH(Y)     _ C_VOL_DN   _ C_MUTE     _ C_VOL_UP   _ MEH(P)
-_ MEH(A)     _ MEH(S)     _ MEH(D)     _ MEH(F)    _ MEH(G)        _ MEH(H)     _ C_PREV     _ C_PP       _ C_NEXT     _ MEH(SEMI)
-&bootloader  _ MEH(X)     _ MEH(C)     _ MEH(V)    _ MEH(B)        _ MEH(N)     _ MEH(M)     _ MEH(COMMA) _ MEH(DOT)   &bootloader
-                          ______       ______      ______          ______       ______       ______
+___ _ MEH(Q) _ MEH(W) _ MEH(E) _ MEH(R) _ MEH(T)        _ MEH(Y) _ VOL_D   _ C_MUTE     _ VOL_U    _ MEH(P)    ___
+___ _ MEH(A) _ MEH(S) _ MEH(D) _ MEH(F) _ MEH(G)        _ MEH(H) _ T_PRV   _ T_PP       _ T_NXT    _ MEH(SEMI) ___
+___ _ MEH(Z) _ MEH(X) _ MEH(C) _ MEH(V) _ MEH(B)        _ MEH(N) _ MEH(M)  _ MEH(COMMA) _ MEH(DOT) _ MEH(FSLH) ___
+                      ______   ______   ______          ______   ______    ______
             >;
         };
     };

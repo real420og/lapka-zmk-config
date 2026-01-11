@@ -1,7 +1,7 @@
 if SHIELD_LAPKA_WELLUM36_DONGLE
 
 config ZMK_KEYBOARD_NAME
-	default "Lapka"
+	default "Lapka 42"
 
 config ZMK_USB
 	default y

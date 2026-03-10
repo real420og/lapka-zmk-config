@@ -247,7 +247,7 @@ _ F1         _ F2         _ F3         _ F4        _ F5            _ F6         
             bindings = <
 _ MEH(Q)     _ MEH(W)     _ MEH(E)     _ MEH(R)    _ MEH(T)        _ MEH(Y)     _ C_VOL_DN   _ C_MUTE     _ C_VOL_UP   _ MEH(P)
 _ MEH(A)     _ MEH(S)     _ MEH(D)     _ MEH(F)    _ MEH(G)        _ MEH(H)     _ C_PREV     _ C_PP       _ C_NEXT     _ MEH(SEMI)
-&bootloader  _ MEH(X)     _ MEH(C)     _ MEH(V)    _ MEH(B)        _ MEH(N)     _ MEH(M)     _ MEH(COMMA) _ MEH(DOT)   &bootloader
+_ MEH(Z)     _ MEH(X)     _ MEH(C)     _ MEH(V)    _ MEH(B)        _ MEH(N)     _ MEH(M)     _ MEH(COMMA) _ MEH(DOT)   _ MEH(FSLH)
                           ______       ______      ______          ______       ______       ______
             >;
         };

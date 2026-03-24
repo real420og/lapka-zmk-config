@@ -41,7 +41,7 @@
 #define RBracket  FSLH
 #define RBrace    LS(FSLH)
 #define Ampersand COMMA
-#define Tilde     Semicolon
+#define Tilde     SEMI
 
 // Media keys rebinds
 #define VOL_U C_VOL_UP

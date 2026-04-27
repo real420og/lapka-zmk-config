@@ -10,13 +10,14 @@
 #define ______ &trans
 
 #define DEF 0
-#define GAM 1
-#define GFN 2
-#define NAV 3
-#define SYM 4
-#define NUM 5
-#define CMD 6
-#define L5  7
+#define ARW 1
+#define GAM 2
+#define GFN 3
+#define NAV 4
+#define SYM 5
+#define NUM 6
+#define CMD 7
+#define L5  8
 
 #define MEH(key) LS(LC(LA(key)))
 
@@ -241,6 +242,15 @@
             tapping-term-ms = <60000>;
             flavor = "hold-preferred";
         };
+
+        lt_tap_prefer_release: lt_tap_prefer_release {
+            compatible = "zmk,behavior-hold-tap";
+            bindings = <&mo>, <&kp>;
+            #binding-cells = <2>;
+            tapping-term-ms = <200>;
+            flavor = "tap-preferred";
+            retro-tap;
+        };
     };
 
     conditional_layers {
@@ -261,7 +271,16 @@
 ___         _ Q         _ W         _ E         _ R         _ T         _ Y         _ U         _ I         _ O         _ P         ___
 ___         _ A         _ S         _ D         _ F         _ G         _ H         _ J         _ K         _ L         _ Tilde     ___
 ___         _ Z         _ X         _ C         _ V         _ B         _ N         _ M         _ Ampersand _ LBracket  _ RBracket  ___
-                                    _ CAPS      &la NAV     _ SPACE     _ LSFT      &lt_la_tui SYM SPACE _ RALT
+                                    _ CAPS      &la NAV     _ SPACE     &lt_tap_prefer_release ARW SPACE &lt_la_tui SYM SPACE _ RALT
+            >;
+        };
+
+        arrows_layer {
+            bindings = <
+___         _ F1        _ F2        _ F3        _ F4        _ F5        _ LA(BSLH)  _ LA(R)     _ LA(L)     _ LA(S)     _ LA(LEFT_ARROW)        ___
+___         _ F6        _ F7        _ F8        _ F9        _ F10       _ LEFT      _ DOWN      _ UP        _ RIGHT     _ LA(F7)                ___
+_ LS(LA(N1)) _ F11      _ F12       _ C_VOL_DN  _ C_VOL_UP  _ C_MUTE    _ LS(LC(EQUAL)) _ LC(MINUS) _ LS(LC(MINUS)) _ LA(LC(LG(LEFT))) _ LA(LC(LG(RIGHT))) _ LS(LG(P))
+                                    ______      ______      ______      ______      ___         ___
             >;
         };
 

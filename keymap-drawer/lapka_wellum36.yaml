@@ -40,9 +40,52 @@ layers:
   - Caps
   - NAV
   - ⎵
-  - Shift
+  - {t: ⎵, h: arrows}
   - {t: ⎵, h: SYM}
   - Alt
+  arrows:
+  - ''
+  - F1
+  - F2
+  - F3
+  - F4
+  - F5
+  - Alt+\
+  - Alt+R
+  - Alt+L
+  - Alt+S
+  - Alt+LEFT ARROW
+  - ''
+  - ''
+  - F6
+  - F7
+  - F8
+  - F9
+  - F10
+  - ←
+  - ↓
+  - ↑
+  - →
+  - Alt+F7
+  - ''
+  - Sft+Alt+1
+  - F11
+  - F12
+  - VOL DN
+  - VOL UP
+  - MUTE
+  - Sft+Ctl+=
+  - Ctl+-
+  - Sft+Ctl+-
+  - Alt+Ctl+Gui+←
+  - Alt+Ctl+Gui+→
+  - Sft+Gui+P
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {type: held}
+  - ''
+  - ''
   gam:
   - ''
   - ⇥

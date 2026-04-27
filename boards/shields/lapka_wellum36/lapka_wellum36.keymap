@@ -16,6 +16,7 @@
 #define SYM 4
 #define NUM 5
 #define CMD 6
+#define L5  7
 
 #define MEH(key) LS(LC(LA(key)))
 
@@ -206,6 +207,32 @@
                 &kp LALT
                 &kp LGUI
         )
+
+        tab_command: tab_command {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings =
+                <&macro_tap>,
+                <&kp LG(TAB)>,
+                <&macro_press>,
+                <&macro_pause_for_release>,
+                <&macro_release>;
+        };
+
+        sl1000: sl1000 {
+            compatible = "zmk,behavior-sticky-key";
+            bindings = <&mo>;
+            #binding-cells = <1>;
+            release-after-ms = <1000>;
+        };
+
+        tab_command_tab: tab_command_tab {
+            compatible = "zmk,behavior-hold-tap";
+            bindings = <&tab_command>, <&sl1000>;
+            #binding-cells = <2>;
+            tapping-term-ms = <200>;
+            flavor = "tap-preferred";
+        };
     };
 
     conditional_layers {
@@ -250,7 +277,7 @@ ___         _ G         _ J         _ I         _ M         _ T         _ KP_NUM
 
         nav_layer {
             bindings = <
-___         &swap_ctrl  &swap_lalt  &swap_lgui  ___         _ ESC       _ ESC       _ HOME      _ END       _ BSPC      _ DEL       ___
+___         &swap_ctrl  &tab_command_tab 0 L5  &swap_lgui  ___         _ ESC       _ ESC       _ HOME      _ END       _ BSPC      _ DEL       ___
 ___         &cm_alt     &cm_ctl     &cm_gui     &cm_sft     _ RET       _ LEFT      _ DOWN      _ UP        _ RIGHT     _ RET       ___
 ___         _ PrevSpace _ NextSpace &tog GAM    _ PSCRN     _ TAB       _ TAB       _ PG_UP     _ PG_DN     _ APOS      _ KP_NUM    ___
                                     &mo CMD     ______      ______      ______      ______      ______
@@ -281,6 +308,15 @@ ___         _ MEH(Q)    _ MEH(W)    _ MEH(E)    _ MEH(R)    _ MEH(T)    _ MEH(Y)
 ___         _ MEH(A)    _ MEH(S)    _ MEH(D)    _ MEH(F)    _ MEH(G)    _ MEH(H)    _ T_PRV     _ T_PP       _ T_NXT    _ MEH(SEMI) ___
 ___         _ MEH(Z)    _ MEH(X)    _ MEH(C)    _ MEH(V)    _ MEH(B)    _ MEH(N)    _ MEH(M)    _ MEH(COMMA) _ MEH(DOT) _ MEH(FSLH) ___
                                     ______      ______      ______      ______      ______      ______
+            >;
+        };
+
+        l5_layer {
+            bindings = <
+___         ___              _ LG(LA(LS(N6))) ___              ___             ___              ___         ___         ___         _ LS(LA(LG(O)))  ___              ___
+___         _ LS(LA(LG(N5))) _ LG(LA(LS(P)))  _ LG(LA(LS(D)))  _ LS(LA(LG(F))) _ LG(LA(LS(G)))  ___         ___         ___         _ LS(LG(LA(N4))) ___              ___
+___         _ LG(LA(LS(Z)))  _ LS(LA(LG(N2))) _ LG(LA(LS(N1))) _ LS(LA(LG(V))) _ LG(LA(LS(N3))) ___         ___         ___         _ LS(LG(LA(N6))) ___              ___
+                                              ___              ___             ___              ___         ___         ___
             >;
         };
     };

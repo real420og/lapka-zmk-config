@@ -1,0 +1,132 @@
+# configuration for https://github.com/caksoylar/keymap-drawer
+parse_config:
+  raw_binding_map:
+    # System / housekeeping
+    '&sys_reset': Reset
+    '&bootloader': Boot
+    '&caps_word': Caps Word
+
+    # Layer access macro
+    '&la NAV': NAV
+    '&la SYM': SYM
+
+    # Toggle / momentary
+    '&tog GAM': "tog GAM"
+    '&mo GFN': GFN
+    '&mo CMD': CMD
+
+    # Callum-mods (sticky-on-tap, release-on-tap)
+    '&cm_gui': sticky ⌘
+    '&cm_alt': sticky ⌥
+    '&cm_ctl': sticky ⌃
+    '&cm_sft': sticky ⇧
+
+    # Swappers (hold mod + tap)
+    '&swap_ctrl': "Ctrl ⇥"
+    '&swap_lalt': "Alt ⇥"
+    '&swap_lgui': "⌘ ⇥"
+
+    # Bluetooth / output
+    '&bt BT_SEL 0': BT 1
+    '&bt BT_SEL 1': BT 2
+    '&bt BT_SEL 2': BT 3
+    '&bt BT_CLR_ALL': BT Clear
+    '&out OUT_TOG': Out Tog
+
+  zmk_keycode_map:
+    # Universal Layout aliases (defined in keymap.h)
+    SQuot: "'"
+    DQuot: '"'
+    Grave: "`"
+    Pipe: "|"
+    Backslash: \
+    Nbsp: NBSP
+    Comma: ","
+    Semicolon: ;
+    Dot: .
+    Colon: ":"
+    Minus: "-"
+    Under: _
+    Equal: "="
+    Plus: +
+    Slash: /
+    LBracket: '['
+    LBrace: '{'
+    RBracket: ']'
+    RBrace: '}'
+    Ampersand: '&'
+    Tilde: '~'
+
+    # Media keys
+    VOL_U: Vol Up
+    VOL_D: Vol Down
+    T_PRV: ⏮
+    T_NXT: ⏭
+    T_PP: ⏯
+
+    # Window management
+    NextSpace: "Space →"
+    PrevSpace: "← Space"
+
+    # Modifiers
+    LCTRL: Ctrl
+    RCTRL: Ctrl
+    LALT: Alt
+    RALT: Alt
+    LGUI: Gui
+    RGUI: Gui
+    LSHIFT: Shift
+    RSHIFT: Shift
+    LSFT: Shift
+    RSFT: Shift
+
+    # Common keys
+    ESC: Esc
+    SPACE: ⎵
+    BSPC: ⌫
+    RET: ⏎
+    TAB: ⇥
+    DEL: ⌦
+    CAPS: Caps
+
+    PG_UP: Page Up
+    PG_DN: Page Down
+    HOME: Home
+    END: End
+    PSCRN: Print
+    KP_NUM: Num Lock
+
+    UP: ↑
+    DOWN: ↓
+    LEFT: ←
+    RIGHT: →
+
+    # Numpad
+    N0: '0'
+    N1: '1'
+    N2: '2'
+    N3: '3'
+    N4: '4'
+    N5: '5'
+    N6: '6'
+    N7: '7'
+    N8: '8'
+    N9: '9'
+
+    # Defaults / fallbacks
+    APOS: "'"
+    APOSTROPHE: "'"
+    GRAVE: "`"
+    BSLH: \
+    FSLH: /
+    LBKT: '['
+    RBKT: ']'
+    SEMI: ;
+    DOT: .
+    COMMA: ','
+    MINUS: '-'
+    EQUAL: '='
+
+draw_config:
+  footer_text: 'Created with <a href="https://github.com/caksoylar/keymap-drawer">keymap-drawer</a>'
+  dark_mode: auto

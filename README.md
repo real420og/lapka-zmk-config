@@ -40,3 +40,6 @@ If you edit layout and want to flash new firmware, there is a stable way to get 
 5. Connect the dongle and flash `lapka_wellum36_dongle` file.
 
 So, the dongle must be flashed in the very end!
+
+---
+![Keymap Representation](./keymap-drawer/lapka_wellum36.svg?raw=true "Keymap Representation")

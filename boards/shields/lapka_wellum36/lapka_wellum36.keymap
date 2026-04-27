@@ -251,7 +251,7 @@ ___         _ G         _ J         _ I         _ M         _ T         _ KP_NUM
         nav_layer {
             bindings = <
 ___         &swap_ctrl  &swap_lalt  &swap_lgui  ___         _ ESC       _ ESC       _ HOME      _ END       _ BSPC      _ DEL       ___
-___         &cm_alt     &cm_ctl     &cm_gui     &cm_sft     _ RET       _ RET       _ LEFT      _ DOWN      _ UP        _ RIGHT     ___
+___         &cm_alt     &cm_ctl     &cm_gui     &cm_sft     _ RET       _ LEFT      _ DOWN      _ UP        _ RIGHT     _ RET       ___
 ___         _ PrevSpace _ NextSpace &tog GAM    _ PSCRN     _ TAB       _ TAB       _ PG_UP     _ PG_DN     _ APOS      _ KP_NUM    ___
                                     &mo CMD     ______      ______      ______      ______      ______
             >;

@@ -233,6 +233,14 @@
             tapping-term-ms = <200>;
             flavor = "tap-preferred";
         };
+
+        lt_la_tui: lt_la_tui {
+            compatible = "zmk,behavior-hold-tap";
+            bindings = <&la>, <&kp>;
+            #binding-cells = <2>;
+            tapping-term-ms = <60000>;
+            flavor = "hold-preferred";
+        };
     };
 
     conditional_layers {
@@ -253,7 +261,7 @@
 ___         _ Q         _ W         _ E         _ R         _ T         _ Y         _ U         _ I         _ O         _ P         ___
 ___         _ A         _ S         _ D         _ F         _ G         _ H         _ J         _ K         _ L         _ Tilde     ___
 ___         _ Z         _ X         _ C         _ V         _ B         _ N         _ M         _ Ampersand _ LBracket  _ RBracket  ___
-                                    _ CAPS      _ SPACE     &la NAV     &la SYM     _ LSFT      _ RALT
+                                    _ CAPS      &la NAV     _ SPACE     _ LSFT      &lt_la_tui SYM SPACE _ RALT
             >;
         };
 
@@ -262,7 +270,7 @@ ___         _ Z         _ X         _ C         _ V         _ B         _ N     
 ___         _ TAB       _ Q         _ W         _ E         _ R         ___         ___         _ UP        ___         _ TAB       ___
 ___         _ LSFT      _ A         _ S         _ D         _ F         ___         _ LEFT      _ DOWN      _ RIGHT     _ RSFT      ___
 ___         _ LCTRL     _ Z         _ X         _ C         _ V         ___         ___         ___         ___         _ RCTRL     ___
-                                    _ LALT      _ SPACE     &mo GFN     &tog GAM    _ SPACE     ______
+                                    _ LALT      &mo GFN     _ SPACE     _ SPACE     &tog GAM    ______
             >;
         };
 
@@ -271,7 +279,7 @@ ___         _ LCTRL     _ Z         _ X         _ C         _ V         ___     
 ___         _ N5        _ N1        _ N2        _ N3        _ N4        BT_Toggle    BT_1       BT_2        BT_3        BT_Clear       ___
 ___         _ N0        _ N6        _ N7        _ N8        _ N9        ___          ___        ___         ___         ___            ___
 ___         _ G         _ J         _ I         _ M         _ T         _ KP_NUM     ___        ___         &sys_reset  &bootloader    ___
-                                    _ ESC       _ RET       ______      ______       ______     ___
+                                    _ ESC       ______      _ RET       ______       ______     ___
             >;
         };
 

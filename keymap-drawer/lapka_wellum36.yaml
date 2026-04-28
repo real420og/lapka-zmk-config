@@ -39,10 +39,53 @@ layers:
   - ''
   - Caps
   - NAV
-  - ⎵
-  - Shift
+  - '&num_layout'
+  - {t: ⎵, h: arrows}
   - {t: ⎵, h: SYM}
   - Alt
+  arrows:
+  - ''
+  - F1
+  - F2
+  - F3
+  - F4
+  - F5
+  - Alt+\
+  - Alt+R
+  - Alt+L
+  - Alt+S
+  - Alt+LEFT ARROW
+  - ''
+  - ''
+  - F6
+  - F7
+  - F8
+  - F9
+  - F10
+  - ←
+  - ↓
+  - ↑
+  - →
+  - Alt+F7
+  - ''
+  - Sft+Alt+1
+  - F11
+  - F12
+  - VOL DN
+  - VOL UP
+  - MUTE
+  - Sft+Ctl+=
+  - Ctl+-
+  - Sft+Ctl+-
+  - Alt+Ctl+Gui+←
+  - Alt+Ctl+Gui+→
+  - Sft+Gui+P
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {type: held}
+  - ''
+  - ''
   gam:
   - ''
   - ⇥
@@ -140,7 +183,7 @@ layers:
   - Home
   - End
   - ⌫
-  - ⌦
+  - ''
   - ''
   - ''
   - sticky ⌥
@@ -301,6 +344,92 @@ layers:
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
+  numbers:
+  - ''
+  - ''
+  - {t: l5, h: '&tab_command'}
+  - Alt+Ctl+Gui+E
+  - '&command_copy'
+  - {t: '&tab_ctrl', h: '&command_grave'}
+  - '-'
+  - '='
+  - '&tt_key_cast'
+  - ''
+  - ''
+  - ''
+  - ''
+  - Alt
+  - Ctrl
+  - Gui
+  - Shift
+  - '&vim_yank_buff'
+  - '1'
+  - '2'
+  - '3'
+  - '4'
+  - '5'
+  - ''
+  - ''
+  - ''
+  - ''
+  - ''
+  - '&vi_terminal'
+  - F16
+  - '6'
+  - '7'
+  - '8'
+  - '9'
+  - '0'
+  - BACKSLASH
+  - {t: ▽, type: trans}
+  - ''
+  - ''
+  - F16
+  - LEFT BRACE
+  - RIGHT BRACE
+  signs:
+  - ''
+  - ''
+  - ''
+  - ''
+  - ''
+  - ''
+  - Sft+-
+  - Sft+=
+  - Alt+=
+  - ''
+  - ''
+  - ''
+  - ''
+  - Alt
+  - Ctrl
+  - Gui
+  - ''
+  - ''
+  - Sft+1
+  - Sft+2
+  - Sft+3
+  - Sft+4
+  - Sft+5
+  - ''
+  - ''
+  - ''
+  - ''
+  - ''
+  - ''
+  - ''
+  - Sft+6
+  - Sft+7
+  - Sft+8
+  - Sft+9
+  - Sft+0
+  - Sft+BACKSLASH
+  - {t: ▽, type: trans}
+  - ''
+  - ''
+  - ''
+  - LEFT PARENTHESIS
+  - RIGHT PARENTHESIS
   l5:
   - ''
   - ''

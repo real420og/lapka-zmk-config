@@ -1,5 +1,9 @@
 #include "lapka_wellum36.dtsi"
 
+&{/leds} {
+	status = "disabled";
+};
+
 &default_transform {
 	col-offset = <6>;
 };

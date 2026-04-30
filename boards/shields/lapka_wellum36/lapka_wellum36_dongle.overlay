@@ -1,5 +1,9 @@
 #include "lapka_wellum36.dtsi"
 
+&{/leds} {
+	status = "disabled";
+};
+
 &kscan0 {
 	col-gpios
 		= <&pro_micro 4 GPIO_ACTIVE_HIGH>

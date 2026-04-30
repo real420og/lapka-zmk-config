@@ -18,6 +18,7 @@ parse_config:
     # Callum-mods (sticky-on-tap, release-on-tap)
     '&cm_gui': sticky ⌘
     '&cm_alt': sticky ⌥
+    '&cm_ralt': sticky AltGr
     '&cm_ctl': sticky ⌃
     '&cm_sft': sticky ⇧
 

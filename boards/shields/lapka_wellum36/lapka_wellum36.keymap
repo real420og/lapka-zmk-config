@@ -15,11 +15,10 @@
 #define GFN 3
 #define NAV 4
 #define SYM 5
-#define NUM 6
-#define CMD 7
-#define NUMS 8
-#define SGNS 9
-#define L5  10
+#define CMD 6
+#define NUMS 7
+#define SGNS 8
+#define L5  9
 
 #define MEH(key) LS(LC(LA(key)))
 
@@ -149,6 +148,14 @@
         )
 
         MODMORPH(
+            cm_ralt,
+            &sticky_forever RALT,
+            &m_release_key_twice RALT,
+            MOD_RALT,
+            MOD_RALT
+        )
+
+        MODMORPH(
             cm_ctl,
             &sticky_forever LCTRL,
             &m_release_key_twice LCTRL,
@@ -242,7 +249,7 @@
             #binding-cells = <0>;
             bindings =
                 <&macro_tap>,
-                <&kp DQT &kp PLUS &kp Y>,
+                <&kp DQuot &kp PLUS &kp Y>,
                 <&macro_press>,
                 <&macro_pause_for_release>,
                 <&macro_release>;
@@ -251,7 +258,7 @@
         command_copy: command_copy {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&kp COLON &kp PRCNT &kp Y &kp PLUS &kp ENTER>;
+            bindings = <&kp Colon &kp N5 &kp Y &kp PLUS &kp ENTER>;
         };
 
         tt_key_cast: tt_key_cast {
@@ -318,6 +325,13 @@
             tapping-term-ms = <400>;
         };
 
+        nav_layout: nav_layout {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            bindings = <&la NAV>, <&sign_layout SGNS SGNS>;
+            tapping-term-ms = <400>;
+        };
+
         lt_la_tui: lt_la_tui {
             compatible = "zmk,behavior-hold-tap";
             bindings = <&la>, <&kp>;
@@ -345,13 +359,6 @@
         };
     };
 
-    conditional_layers {
-        compatible = "zmk,conditional-layers";
-        tri_layer {
-            if-layers  = <NAV SYM>;
-            then-layer = <NUM>;
-        };
-    };
 };
 
 / {
@@ -363,13 +370,13 @@
 ___         _ Q         _ W         _ E         _ R         _ T         _ Y         _ U         _ I         _ O         _ P         ___
 ___         _ A         _ S         _ D         _ F         _ G         _ H         _ J         _ K         _ L         _ Tilde     ___
 ___         _ Z         _ X         _ C         _ V         _ B         _ N         _ M         _ Ampersand _ LBracket  _ RBracket  ___
-                                    _ CAPS      &la NAV     &num_layout     &lt_tap_prefer_release ARW SPACE &lt_la_tui SYM LEFT_BRACKET &mt_alt_retro RALT RIGHT_BRACKET
+                                    _ CAPS      &nav_layout &num_layout     &lt_tap_prefer_release ARW SPACE &lt_la_tui SYM Comma &mt_alt_retro RALT Dot
             >;
         };
 
         arrows_layer {
             bindings = <
-___         _ F1        _ F2        _ F3        _ F4        _ F5        _ LA(BSLH)  _ LA(R)     _ LA(L)     _ LA(S)     _ LA(LEFT_ARROW)        ___
+___         _ F1        _ F2        _ F3        _ F4        _ F5        _ LC(LA(BSLH)) _ LA(R)     _ LA(L)     _ LA(S)     _ LA(LEFT_ARROW)        ___
 ___         _ F6        _ F7        _ F8        _ F9        _ F10       _ LEFT      _ DOWN      _ UP        _ RIGHT     _ LA(F7)                ___
 _ LS(LA(N1)) _ F11      _ F12       _ C_VOL_DN  _ C_VOL_UP  _ C_MUTE    _ LS(LC(EQUAL)) _ LC(MINUS) _ LS(LC(MINUS)) _ LA(LC(LG(LEFT))) _ LA(LC(LG(RIGHT))) _ LS(LG(P))
                                     ______      ______      ______      ______      ___         ___
@@ -396,28 +403,19 @@ ___         _ G         _ J         _ I         _ M         _ T         _ KP_NUM
 
         nav_layer {
             bindings = <
-___         &swap_ctrl  &tab_command_tab 0 L5  &swap_lgui  _ BSPC      _ ESC       ___         ___         ___         ___         ___         ___
-___         &cm_alt     &cm_ctl              &cm_gui      &cm_sft      _ RET       ___         ___         ___         ___         ___         ___
-___         _ PrevSpace _ NextSpace          &tog GAM     _ PSCRN      _ TAB       ___         ___         ___         ___         ___         ___
-                                    &mo CMD     ______               ______        ___         ___         ___
+___         ___  &tab_command_tab 0 L5  ___  _ BSPC      _ ESC       _ MINUS     _ EQUAL     &tt_key_cast ___         RA(O)         RA(P)
+___         &cm_alt     &cm_ctl              &cm_gui      &cm_sft      _ RET       _ N1        _ N2        _ N3        _ N4        _ N5        ___
+___         ______         ______                 ______           ______          _ TAB       _ N6        _ N7        _ N8        _ N9        _ N0        ___
+                                            ___     ___               ___        _ F16       _ RA(LBracket) _ RA(RBracket)
             >;
         };
 
         sym_layer {
             bindings = <
 ___         _ N1        _ N2        _ N3        _ N4        _ N5        _ N6        _ N7        _ N8        _ N9        _ N0        ___
-___         _ Tilde     _ Grave     _ SQuot     _ DQuot     _ Minus     _ Plus      &cm_sft     &cm_gui     &cm_ctl     &cm_alt     ___
-___         _ Backslash ___         _ Semicolon _ Comma     _ Under     _ Equal     _ Dot       _ Colon     _ Pipe      _ Slash     ___
+___         _ Tilde     _ Grave     _ SQuot     _ DQuot     _ Minus     _ Plus      &cm_sft     &cm_gui     &cm_ctl     &cm_ralt    ___
+___         _ Backslash _ RA(Ampersand) _ Semicolon _ Comma     _ Under     _ Equal     _ Dot       _ Colon     _ Pipe      _ Slash     ___
                                     ______      ______      ______      ______      ______      _ RALT
-            >;
-        };
-
-        num_layer {
-            bindings = <
-___         _ KP_N1     _ KP_N2     _ KP_N3     _ KP_N4     _ KP_N5     _ KP_N6     _ KP_N7     _ KP_N8     _ KP_N9     _ KP_N0     ___
-___         &cm_alt     &cm_ctl     &cm_gui     &cm_sft     _ F11       _ F12       &cm_sft     &cm_gui     &cm_ctl     &cm_alt     ___
-___         _ F1        _ F2        _ F3        _ F4        _ F5        _ F6        _ F7        _ F8        _ F9        _ F10       ___
-                                    ______      ______      ______      ______      ______      ______
             >;
         };
 
@@ -432,19 +430,19 @@ ___         _ MEH(Z)    _ MEH(X)    _ MEH(C)    _ MEH(V)    _ MEH(B)    _ MEH(N)
 
         numbers_layer {
             bindings = <
-___         ___         &tab_command_tab 0 L5  _ LA(LC(LG(E))) &command_copy &command_grave_command 0 0 _ MINUS _ EQUAL &tt_key_cast ___         ___         ___
-___         _ LALT      _ LCTRL     _ LGUI      _ LSFT      &vim_yank_buff _ N1       _ N2        _ N3        _ N4        _ N5        ___
-___         ___         ___         ___         &vi_terminal _ F16       _ N6        _ N7        _ N8        _ N9        _ N0        _ BACKSLASH
-                                    ______      ___         ___         _ F16       _ LEFT_BRACE _ RIGHT_BRACE
+___         ___         ___  _ LA(LC(LG(E))) &command_copy &command_grave_command 0 0 ___         ___         ___         ___         ___         ___
+___         _ LALT      _ LCTRL     _ LGUI      _ LSHFT      &vim_yank_buff ___         ___         ___         ___         ___         ___
+___         ___         ___         ___         &vi_terminal _ F16       ___         ___         ___         ___         ___         ___
+                                    ___      ___         ___         ___         ___         ___
             >;
         };
 
         signs_layer {
             bindings = <
-___         ___         ___         ___         ___         ___         _ Under     _ Plus      _ LA(EQUAL) ___         ___         ___
-___         _ LALT      _ LCTRL     _ LGUI      ___         ___         _ LS(N1)    _ LS(N2)    _ LS(N3)    _ LS(N4)    _ LS(N5)    ___
-___         ___         ___         ___         ___         ___         _ LS(NUMBER_6) _ LS(N7)  _ LS(N8)    _ LS(N9)    _ LS(N0)    _ LS(BACKSLASH)
-                                    ______      ___         ___         ___         _ LEFT_PARENTHESIS _ RIGHT_PARENTHESIS
+___         ___         ___         ___         ___         ___         _ LS(MINUS) _ LS(EQUAL)  ___ ___         ___         ___
+___         _ LALT      _ LCTRL     _ LGUI      _ LSHFT     ___         _ LS(N1)    _ LS(N2)    _ LS(N3)    _ LS(N4)    _ LS(N5)    ___
+___         ___         ___         ___         ___         ___         _ LS(N6)    _ LS(N7)    _ LS(N8)    _ LS(N9)    _ LS(N0)    ___
+                                    ______      ___         ___         ___         _ RA(LBrace) _ RA(RBrace)
             >;
         };
 

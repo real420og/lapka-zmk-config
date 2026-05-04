@@ -17,8 +17,7 @@
 #define SYM 5
 #define CMD 6
 #define NUMS 7
-#define SGNS 8
-#define L5  9
+#define L5  8
 
 #define MEH(key) LS(LC(LA(key)))
 
@@ -311,27 +310,6 @@
             flavor = "tap-preferred";
         };
 
-        sign_layout: sign_layout {
-            compatible = "zmk,behavior-hold-tap";
-            bindings = <&mo>, <&sl>;
-            #binding-cells = <2>;
-            tapping-term-ms = <200>;
-        };
-
-        num_layout: num_layout {
-            compatible = "zmk,behavior-tap-dance";
-            #binding-cells = <0>;
-            bindings = <&mo NUMS>, <&sign_layout SGNS SGNS>;
-            tapping-term-ms = <400>;
-        };
-
-        nav_layout: nav_layout {
-            compatible = "zmk,behavior-tap-dance";
-            #binding-cells = <0>;
-            bindings = <&la NAV>, <&sign_layout SGNS SGNS>;
-            tapping-term-ms = <400>;
-        };
-
         lt_la_tui: lt_la_tui {
             compatible = "zmk,behavior-hold-tap";
             bindings = <&la>, <&kp>;
@@ -370,7 +348,7 @@
 ___         _ Q         _ W         _ E         _ R         _ T         _ Y         _ U         _ I         _ O         _ P         ___
 ___         _ A         _ S         _ D         _ F         _ G         _ H         _ J         _ K         _ L         _ Tilde     ___
 ___         _ Z         _ X         _ C         _ V         _ B         _ N         _ M         _ Ampersand _ LBracket  _ RBracket  ___
-                                    _ CAPS      &nav_layout &num_layout     &lt_tap_prefer_release ARW SPACE &lt_la_tui SYM Comma &mt_alt_retro RALT Dot
+                                    _ CAPS      &la NAV    &la NUMS        &lt_tap_prefer_release ARW SPACE &lt_la_tui SYM Comma &mt_alt_retro RALT Dot
             >;
         };
 
@@ -403,10 +381,10 @@ ___         _ G         _ J         _ I         _ M         _ T         _ KP_NUM
 
         nav_layer {
             bindings = <
-___         ___  &tab_command_tab 0 L5  ___  _ BSPC      _ ESC       _ MINUS     _ EQUAL     &tt_key_cast ___         RA(O)         RA(P)
+___         ___  &tab_command_tab 0 L5  ___  _ BSPC      _ ESC       _ MINUS     _ EQUAL     ___          _ RA(O)       _ RA(P)       ___
 ___         &cm_alt     &cm_ctl              &cm_gui      &cm_sft      _ RET       _ N1        _ N2        _ N3        _ N4        _ N5        ___
 ___         ______         ______                 ______           ______          _ TAB       _ N6        _ N7        _ N8        _ N9        _ N0        ___
-                                            ___     ___               ___        _ F16       _ RA(LBracket) _ RA(RBracket)
+                                            ___     ___               ___        _ LC(SPACE) _ RA(LBracket) _ RA(RBracket)
             >;
         };
 
@@ -430,19 +408,10 @@ ___         _ MEH(Z)    _ MEH(X)    _ MEH(C)    _ MEH(V)    _ MEH(B)    _ MEH(N)
 
         numbers_layer {
             bindings = <
-___         ___         ___  _ LA(LC(LG(E))) &command_copy &command_grave_command 0 0 ___         ___         ___         ___         ___         ___
-___         _ LALT      _ LCTRL     _ LGUI      _ LSHFT      &vim_yank_buff ___         ___         ___         ___         ___         ___
-___         ___         ___         ___         &vi_terminal _ F16       ___         ___         ___         ___         ___         ___
-                                    ___      ___         ___         ___         ___         ___
-            >;
-        };
-
-        signs_layer {
-            bindings = <
-___         ___         ___         ___         ___         ___         _ LS(MINUS) _ LS(EQUAL)  ___ ___         ___         ___
-___         _ LALT      _ LCTRL     _ LGUI      _ LSHFT     ___         _ LS(N1)    _ LS(N2)    _ LS(N3)    _ LS(N4)    _ LS(N5)    ___
-___         ___         ___         ___         ___         ___         _ LS(N6)    _ LS(N7)    _ LS(N8)    _ LS(N9)    _ LS(N0)    ___
-                                    ______      ___         ___         ___         _ RA(LBrace) _ RA(RBrace)
+___         ___         ___  _ LA(LC(LG(E))) &command_copy &command_grave_command 0 0 _ LS(MINUS) _ LS(EQUAL)  ___         _ RA(O)       _ RA(P)         ___
+___         &cm_alt     &cm_ctl     &cm_gui     &cm_sft      &vim_yank_buff _ LS(N1)    _ LS(N2)    _ LS(N3)    _ LS(N4)    _ LS(N5)    ___
+___         ___         ___         ___         &vi_terminal _ F16       _ LS(N6)    _ LS(N7)    _ LS(N8)    _ LS(N9)    _ LS(N0)    ___
+                                    ___      ___         ___         ___         _ RA(LBrace) _ RA(RBrace)
             >;
         };
 

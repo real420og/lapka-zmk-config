@@ -1,0 +1,6 @@
+# SPDX-License-Identifier: MIT
+
+config ZMK_BEHAVIOR_TAP_REPEAT
+    bool
+    default y
+    depends on DT_HAS_ZMK_BEHAVIOR_TAP_REPEAT_ENABLED

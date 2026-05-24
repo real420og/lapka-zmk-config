@@ -277,6 +277,19 @@
                 <&kp ENTER &kp V>;
         };
 
+
+        vi_prev_method: vi_prev_method {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LBracket &kp M>;
+        };
+
+        vi_next_method: vi_next_method {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp RBracket &kp M>;
+        };
+
         tab_ctrl: tab_ctrl {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
@@ -373,15 +386,15 @@ ___         ______         ______              _ LG(C)          _ LG(V)      _ T
 ___         _ N1        _ N2        _ N3        _ N4        _ N5        _ N6        _ N7        _ N8        _ N9        _ N0        ___
 ___         _ Tilde     _ Grave     _ SQuot     _ DQuot     _ Minus     _ Plus      &cm_sft     &cm_gui     &cm_ctl     &cm_ralt    ___
 ___         _ Backslash _ RA(Ampersand) _ Semicolon _ Equal     _ Under     _ RA(LBrace)     _ RA(RBrace)       _ Colon     _ Pipe      _ Slash     ___
-                        ___               _ LC(SPACE)     ______       ______      ______      ___
+                        ___               &lt_la_tui NAV LC(SPACE)     ______       ______      ______      ___
             >;
         };
 
         numbers_layer {
             bindings = <
 ___         ___       _ LC(LA(Comma)) _ LC(LA(Dot))   &command_copy &command_grave_command 0 0  ___  ___    ___          ___       ___       ___
-___         &cm_alt     &cm_ctl     &cm_gui     &cm_sft      &vim_yank_buff ___        ___        ___        ___        ___        ___
-___         ___         ___         ___         &vi_terminal ___         ___        ___        ___        ___        ___        ___
+___         ___     ___     ___     ___      &vim_yank_buff ___        ___        ___        ___        ___        ___
+___         ___         ___         ___         &vi_terminal ___         &vi_prev_method &vi_next_method        ___        ___        ___        ___
                                     ___      ___         ___         ___ ___ ___
             >;
         };

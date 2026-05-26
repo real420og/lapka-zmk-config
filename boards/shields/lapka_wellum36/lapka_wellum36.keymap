@@ -167,6 +167,17 @@
             MOD_LSFT
         )
 
+        MODMORPH(nav_1, &kp LS(N1), &kp N1, (MOD_LSFT | MOD_RSFT), 0)
+        MODMORPH(nav_2, &kp LS(N2), &kp N2, (MOD_LSFT | MOD_RSFT), 0)
+        MODMORPH(nav_3, &kp LS(N3), &kp N3, (MOD_LSFT | MOD_RSFT), 0)
+        MODMORPH(nav_4, &kp LS(N4), &kp N4, (MOD_LSFT | MOD_RSFT), 0)
+        MODMORPH(nav_5, &kp LS(N5), &kp N5, (MOD_LSFT | MOD_RSFT), 0)
+        MODMORPH(nav_6, &kp LS(N6), &kp N6, (MOD_LSFT | MOD_RSFT), 0)
+        MODMORPH(nav_7, &kp LS(N7), &kp N7, (MOD_LSFT | MOD_RSFT), 0)
+        MODMORPH(nav_8, &kp LS(N8), &kp N8, (MOD_LSFT | MOD_RSFT), 0)
+        MODMORPH(nav_9, &kp LS(N9), &kp N9, (MOD_LSFT | MOD_RSFT), 0)
+        MODMORPH(nav_0, &kp LS(N0), &kp N0, (MOD_LSFT | MOD_RSFT), 0)
+
         MACRO_TWO_PARAM(
             m_hold_mod_press_key,
             &macro_press
@@ -397,8 +408,8 @@ _ LS(LA(N1)) _ F11      _ F12       _ C_VOL_DN  _ C_VOL_UP  _ C_MUTE    _ LS(LC(
         nav_layer {
             bindings = <
 ___         _ LA(LC(LG(G)))  &tab_command_tab 0 L5  _ LA(LC(LG(F)))  _ BSPC      _ ESC       _ LA(Comma) _ LA(Dot)  ___         _ RA(O)       _ RA(P)         ___
-___         &cm_alt     &cm_ctl              &cm_gui      &cm_sft      _ RET       _ LS(N1)    _ LS(N2)    _ LS(N3)    _ LS(N4)    _ LS(N5)    ___
-___         &zq_shift   _ LG(X)              _ LG(C)          _ LG(V)      _ TAB       _ LS(N6)    _ LS(N7)    _ LS(N8)    _ LS(N9)    _ LS(N0)    ___
+___         &cm_alt     &cm_ctl              &cm_gui      &cm_sft      _ RET       &nav_1      &nav_2      &nav_3      &nav_4      &nav_5      ___
+___         &zq_shift   _ LG(X)              _ LG(C)          _ LG(V)      _ TAB       &nav_6      &nav_7      &nav_8      &nav_9      &nav_0      ___
                                             ___     ___               ___        &lt_tap_prefer_release ARW SPACE &lt_la_tui SYM RA(LBracket) &mt_alt_retro RALT RA(RBracket)
             >;
         };

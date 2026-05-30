@@ -354,6 +354,8 @@
         vi_search_method: vi_search_method {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
+            wait-ms = <0>;
+            tap-ms = <0>;
             bindings = <&kp ESC &kp Slash &kp LBrace &kp ENTER &kp LC(L) &kp LS(V)>;
         };
 
@@ -434,7 +436,7 @@
 ___         _ Q         _ W         _ E         _ R         _ T         _ Y         _ U         _ I         _ O         _ P         ___
 ___         _ A         _ S         _ D         _ F         _ G         _ H         _ J         _ K         _ L         _ Tilde     ___
 ___         _ Z         _ X         _ C         _ V         _ B         _ N         _ M         _ Ampersand _ LBracket  _ RBracket  ___
-                                    _ CAPS      &la NAV    &la NUMS        &lt_tap_prefer_release ARW SPACE &lt_la_tui SYM Comma &mt_alt_retro RALT Dot
+                                    _ CAPS      &la NAV    &la NUMS        &lt_tap_prefer_release ARW SPACE &lt_la_tui SYM Comma &mt_alt_retro RSHFT Dot
             >;
         };
 

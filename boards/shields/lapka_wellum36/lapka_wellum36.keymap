@@ -436,7 +436,7 @@
 ___         _ Q         _ W         _ E         _ R         _ T         _ Y         _ U         _ I         _ O         _ P         ___
 ___         _ A         _ S         _ D         _ F         _ G         _ H         _ J         _ K         _ L         _ Tilde     ___
 ___         _ Z         _ X         _ C         _ V         _ B         _ N         _ M         _ Ampersand _ LBracket  _ RBracket  ___
-                                    _ CAPS      &la NAV    &la NUMS        &lt_tap_prefer_release ARW SPACE &lt_la_tui SYM Comma &mt_alt_retro RSHFT Dot
+                                                _ RSHFT     &la NAV    &la NUMS        &lt_tap_prefer_release ARW SPACE &la SYM     _ CAPS
             >;
         };
 
@@ -454,7 +454,7 @@ _ LS(LA(N1)) _ F11      _ F12       _ C_VOL_DN  _ C_VOL_UP  _ C_MUTE    _ LS(LC(
 ___         _ LA(LC(LG(G)))  &tab_command_tab 0 L5  _ LA(LC(LG(F)))  _ BSPC      _ ESC       _ LA(Comma) _ LA(Dot)  ___         _ RA(O)       _ RA(P)         ___
 ___         &cm_alt     &cm_ctl              &cm_gui      &cm_sft      _ RET       _ N1    _ N2    _ N3    _ N4    _ N5    ___
 ___         &zq_shift   _ LG(X)              _ LG(C)          _ LG(V)      _ TAB       _ N6    _ N7    _ N8    _ N9    _ N0    ___
-                                            ___     ___               ___        &lt_tap_prefer_release ARW SPACE &lt_la_tui SYM RA(LBracket) &mt_alt_retro RALT RA(RBracket)
+                                            ______     ___               _ CAPS        &lt_tap_prefer_release ARW SPACE ______ ______
             >;
         };
 
@@ -462,17 +462,17 @@ ___         &zq_shift   _ LG(X)              _ LG(C)          _ LG(V)      _ TAB
             bindings = <
 ___         ___        ___        ___        ___        ___        ___        ___        ___        ___        ___        ___
 ___         _ Tilde     _ Grave     _ SQuot     _ DQuot     _ Minus     _ Plus      &cm_sft     &cm_gui     &cm_ctl     &cm_ralt    ___
-___         _ Backslash _ RA(Ampersand) _ Semicolon _ Equal     _ Under     _ RA(LBrace)     _ RA(RBrace)       _ Colon     _ Pipe      _ Slash     ___
+___         _ Backslash _ RA(Ampersand) _ Semicolon _ Comma     _ Under     _ Equal     _ Dot       _ Colon     _ Pipe      _ Slash     ___
                         ___               &lt_la_tui NAV LC(SPACE)     ______       ______      ______      ___
             >;
         };
 
         numbers_layer {
             bindings = <
-___         ___  ___  ___  &command_copy &command_grave_command 0 0  _ LC(LA(Comma)) _ LC(LA(Dot))    ___          ___       ___       ___
+___         ___  ___  ___  &command_copy &command_grave_command 0 0  _ LC(LA(Comma)) _ LC(LA(Dot))    _ LC(LG(Tilde))          _ LC(LG(SQuot))       ___       ___
 ___         ___     ___     ___     ___      &vim_yank_buff &vi_prev_brace_rpt &vi_search_rpt        ___        ___        ___        ___
 ___         ___         ___         ___         &vi_terminal ___         &vi_prev_rpt &vi_next_rpt  ___        ___       ___ ___
-                                    ___      ___         ___         ___ ___ ___
+                                    ___      _ CAPS         ___         ___ ___ ___
             >;
         };
 

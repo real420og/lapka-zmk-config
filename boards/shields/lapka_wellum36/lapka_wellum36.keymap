@@ -436,7 +436,7 @@
 ___         _ Q         _ W         _ E         _ R         _ T         _ Y         _ U         _ I         _ O         _ P         ___
 ___         _ A         _ S         _ D         _ F         _ G         _ H         _ J         _ K         _ L         _ Tilde     ___
 ___         _ Z         _ X         _ C         _ V         _ B         _ N         _ M         _ Ampersand _ LBracket  _ RBracket  ___
-                                                _ RSHFT     &la NAV    &la NUMS        &lt_tap_prefer_release ARW SPACE &la SYM     _ CAPS
+                                                _ CAPS     &la NAV    &la NUMS        &lt_tap_prefer_release ARW SPACE &la SYM ___
             >;
         };
 
@@ -454,7 +454,7 @@ _ LS(LA(N1)) _ F11      _ F12       _ C_VOL_DN  _ C_VOL_UP  _ C_MUTE    _ LS(LC(
 ___         _ LA(LC(LG(G)))  &tab_command_tab 0 L5  _ LA(LC(LG(F)))  _ BSPC      _ ESC       _ LA(Comma) _ LA(Dot)  ___         _ RA(O)       _ RA(P)         ___
 ___         &cm_alt     &cm_ctl              &cm_gui      &cm_sft      _ RET       _ N1    _ N2    _ N3    _ N4    _ N5    ___
 ___         &zq_shift   _ LG(X)              _ LG(C)          _ LG(V)      _ TAB       _ N6    _ N7    _ N8    _ N9    _ N0    ___
-                                            ______     ___               _ CAPS        &lt_tap_prefer_release ARW SPACE ______ ______
+                                            ___     ___               ___        &lt_tap_prefer_release ARW SPACE ______ ______
             >;
         };
 
@@ -472,7 +472,7 @@ ___         _ Backslash _ RA(Ampersand) _ Semicolon _ Comma     _ Under     _ Eq
 ___         ___  ___  ___  &command_copy &command_grave_command 0 0  _ LC(LA(Comma)) _ LC(LA(Dot))    _ LC(LG(Tilde))          _ LC(LG(SQuot))       ___       ___
 ___         ___     ___     ___     ___      &vim_yank_buff &vi_prev_brace_rpt &vi_search_rpt        ___        ___        ___        ___
 ___         ___         ___         ___         &vi_terminal ___         &vi_prev_rpt &vi_next_rpt  ___        ___       ___ ___
-                                    ___      _ CAPS         ___         ___ ___ ___
+                                    ___      ___         ___         ___ ___ ___
             >;
         };
 

@@ -434,7 +434,7 @@
         def_layer {
             bindings = <
 ___         _ Q         _ W         _ E         _ R         _ T         _ Y         _ U         _ I         _ O         _ P         ___
-___         _ A         _ S         _ D         _ F         _ G         _ H         _ J         _ K         _ L         _ Tilde     ___
+_ Q         _ A         _ S         _ D         _ F         _ G         _ H         _ J         _ K         _ L         _ Tilde     _ P
 ___         _ Z         _ X         _ C         _ V         _ B         _ N         _ M         _ Ampersand _ LBracket  _ RBracket  ___
                                                 _ CAPS     &la NAV    &la NUMS        &lt_tap_prefer_release ARW SPACE &la SYM ___
             >;

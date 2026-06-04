@@ -367,6 +367,38 @@
             tap-ms = <100>;
         };
 
+        vi_prev_zero_method: vi_prev_zero_method {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <0>;
+            tap-ms = <0>;
+            bindings = <&kp ESC &kp N7 &kp N9 &kp ENTER &kp LC(L) &kp LS(V)>;
+        };
+
+        vi_prev_zero_rpt: vi_prev_zero_rpt {
+            compatible = "zmk,behavior-tap-repeat";
+            #binding-cells = <0>;
+            bindings = <&vi_prev_zero_method>;
+            wait-ms = <150>;
+            tap-ms = <50>;
+        };
+
+        vi_search_zero_method: vi_search_zero_method {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <0>;
+            tap-ms = <0>;
+            bindings = <&kp ESC &kp Slash &kp N0 &kp ENTER &kp LC(L) &kp LS(V)>;
+        };
+
+        vi_search_zero_rpt: vi_search_zero_rpt {
+            compatible = "zmk,behavior-tap-repeat";
+            #binding-cells = <0>;
+            bindings = <&vi_search_zero_method>;
+            wait-ms = <150>;
+            tap-ms = <50>;
+        };
+
         tab_ctrl: tab_ctrl {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
@@ -434,7 +466,7 @@
         def_layer {
             bindings = <
 ___         _ Q         _ W         _ E         _ R         _ T         _ Y         _ U         _ I         _ O         _ P         ___
-_ Q         _ A         _ S         _ D         _ F         _ G         _ H         _ J         _ K         _ L         _ Tilde     _ P
+___         _ A         _ S         _ D         _ F         _ G         _ H         _ J         _ K         _ L         _ Tilde     ___
 ___         _ Z         _ X         _ C         _ V         _ B         _ N         _ M         _ Ampersand _ LBracket  _ RBracket  ___
                                                 _ CAPS     &la NAV    &la NUMS        &lt_tap_prefer_release ARW SPACE &la SYM ___
             >;
@@ -451,16 +483,16 @@ _ LS(LA(N1)) _ F11      _ F12       _ C_VOL_DN  _ C_VOL_UP  _ C_MUTE    _ LS(LC(
 
         nav_layer {
             bindings = <
-___         _ LA(LC(LG(G)))  &tab_command_tab 0 L5  _ LA(LC(LG(F)))  _ BSPC      _ ESC       _ LA(Comma) _ LA(Dot)  ___         _ RA(O)       _ RA(P)         ___
-___         &cm_alt     &cm_ctl              &cm_gui      &cm_sft      _ RET       _ N1    _ N2    _ N3    _ N4    _ N5    ___
-___         &zq_shift   _ LG(X)              _ LG(C)          _ LG(V)      _ TAB       _ N6    _ N7    _ N8    _ N9    _ N0    ___
+___         _ LA(LC(LG(G)))  &tab_command_tab 0 L5  _ LA(LC(LG(F)))  _ BSPC      _ ESC       _ LA(Comma) _ LA(Dot)  _ LA(I)         ___       ___         ___
+_ LA(LC(LG(G)))         &cm_alt     &cm_ctl              &cm_gui      &cm_sft      _ RET       _ N1    _ N2    _ N3    _ N4    _ N5    _ RA(P)
+___         &zq_shift   _ LG(X)              _ LG(C)          _ LG(V)   _ TAB          _ N6    _ N7    _ N8    _ N9    _ N0    ___
                                             ___     ___               ___        &lt_tap_prefer_release ARW SPACE ______ ______
             >;
         };
 
         sym_layer {
             bindings = <
-___         ___        ___        ___        ___        ___        ___        ___        ___        ___        ___        ___
+___         ______        ___        ___        ___        ___        _ RA(O)       _ RA(P)        ___        ___        ___        ___
 ___         _ Tilde     _ Grave     _ SQuot     _ DQuot     _ Minus     _ Plus      &cm_sft     &cm_gui     &cm_ctl     &cm_ralt    ___
 ___         _ Backslash _ RA(Ampersand) _ Semicolon _ Comma     _ Under     _ Equal     _ Dot       _ Colon     _ Pipe      _ Slash     ___
                         ___               &lt_la_tui NAV LC(SPACE)     ______       ______      ______      ___
@@ -469,16 +501,16 @@ ___         _ Backslash _ RA(Ampersand) _ Semicolon _ Comma     _ Under     _ Eq
 
         numbers_layer {
             bindings = <
-___         ___  ___  ___  &command_copy &command_grave_command 0 0  _ LC(LA(Comma)) _ LC(LA(Dot))    _ LC(LG(Tilde))          _ LC(LG(SQuot))       ___       ___
-___         ___     ___     ___     ___      &vim_yank_buff &vi_prev_brace_rpt &vi_search_rpt        ___        ___        ___        ___
-___         ___         ___         ___         &vi_terminal ___         &vi_prev_rpt &vi_next_rpt  ___        ___       ___ ___
+___         ___  ___  ___  &command_copy &command_grave_command 0 0  &vi_prev_zero_rpt &vi_search_zero_rpt    _ LC(LG(Tilde))          _ LC(LG(SQuot))       ___       ___
+___         ___     ___     ___     &vim_yank_buff  _ LC(N6)     &vi_prev_brace_rpt &vi_search_rpt        _ LG(Comma) _ LG(Dot)  ___        ___
+___         ___         ___         ___         &vi_terminal   ___       &vi_prev_rpt &vi_next_rpt   _ LC(LA(Comma)) _ LC(LA(Dot)) ___ ___
                                     ___      ___         ___         ___ ___ ___
             >;
         };
 
         l5_layer {
             bindings = <
-___         ___              _ LG(LA(LS(N6))) _ LA(LC(LG(E)))  _ LS(LG(LA(N7)))             ___              ___         ___         ___         ___  ___              ___
+___         ___              ___ _ LA(LC(LG(E)))  _ LS(LG(LA(N7)))             _ LG(LA(LS(N6)))              ___         ___         ___         ___  ___              ___
 ___         _ LS(LA(LG(N5))) _ LG(LA(LS(P)))  _ LG(LA(LS(D)))  _ LS(LA(LG(F))) _ LG(LA(LS(G)))  ___    ___    ___ ___ ___       ___
 ___         _ LG(LA(LS(Z)))  _ LS(LA(LG(N2))) _ LG(LA(LS(N1))) _ LS(LA(LG(V))) _ LG(LA(LS(N3))) ___    ___    ___ ___ ___       ___
                                               ___              ___             ___              ___         ___         ___

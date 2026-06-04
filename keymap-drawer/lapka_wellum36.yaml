@@ -39,10 +39,10 @@ layers:
   - ''
   - Caps
   - NAV
-  - '&num_layout'
+  - '&la 4'
   - {t: ⎵, h: arrows}
-  - {t: ⎵, h: SYM}
-  - Alt
+  - SYM
+  - ''
   arrows:
   - ''
   - F1
@@ -50,7 +50,7 @@ layers:
   - F3
   - F4
   - F5
-  - Alt+\
+  - Ctl+Alt+\
   - Alt+R
   - Alt+L
   - Alt+S
@@ -88,59 +88,59 @@ layers:
   - ''
   nav:
   - ''
-  - Ctrl ⇥
+  - Alt+Ctl+Gui+G
   - {t: l5, h: '&tab_command'}
-  - ⌘ ⇥
-  - ''
-  - Esc
-  - Esc
-  - Home
-  - End
+  - Alt+Ctl+Gui+F
   - ⌫
+  - Esc
+  - Alt+[
+  - Alt+]
+  - Alt+I
   - ''
   - ''
   - ''
+  - Alt+Ctl+Gui+G
   - sticky ⌥
   - sticky ⌃
   - sticky ⌘
   - sticky ⇧
   - ⏎
-  - ←
-  - ↓
-  - ↑
-  - →
-  - ⏎
-  - ''
-  - ''
-  - Ctl+Gui+←
-  - Ctl+Gui+→
-  - ''
-  - Print
-  - ⇥
-  - ⇥
-  - Page Up
-  - Page Down
-  - ''''
-  - Num Lock
-  - ''
-  - ''
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  sym:
-  - ''
   - '1'
   - '2'
   - '3'
   - '4'
   - '5'
+  - AltGr+P
+  - ''
+  - '&zq_shift'
+  - Gui+X
+  - Gui+C
+  - Gui+V
+  - ⇥
   - '6'
   - '7'
   - '8'
   - '9'
   - '0'
+  - ''
+  - ''
+  - ''
+  - ''
+  - {t: ⎵, h: arrows}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  sym:
+  - ''
+  - {t: ▽, type: trans}
+  - ''
+  - ''
+  - ''
+  - ''
+  - AltGr+O
+  - AltGr+P
+  - ''
+  - ''
+  - ''
   - ''
   - ''
   - ;
@@ -152,11 +152,11 @@ layers:
   - sticky ⇧
   - sticky ⌘
   - sticky ⌃
-  - sticky ⌥
+  - sticky AltGr
   - ''
   - ''
   - AltGr+\
-  - ''
+  - AltGr+,
   - Sft+[
   - '['
   - Sft+-
@@ -166,122 +166,47 @@ layers:
   - Sft+\
   - \
   - ''
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - Alt
-  num:
   - ''
-  - KP 1
-  - KP 2
-  - KP 3
-  - KP 4
-  - KP 5
-  - KP 6
-  - KP 7
-  - KP 8
-  - KP 9
-  - KP 0
+  - {t: Ctl+⎵, h: NAV}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
   - ''
-  - ''
-  - sticky ⌥
-  - sticky ⌃
-  - sticky ⌘
-  - sticky ⇧
-  - F11
-  - F12
-  - sticky ⇧
-  - sticky ⌘
-  - sticky ⌃
-  - sticky ⌥
-  - ''
-  - ''
-  - F1
-  - F2
-  - F3
-  - F4
-  - F5
-  - F6
-  - F7
-  - F8
-  - F9
-  - F10
-  - ''
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
   numbers:
   - ''
   - ''
-  - {t: l5, h: '&tab_command'}
-  - Alt+Ctl+Gui+E
+  - ''
+  - ''
   - '&command_copy'
   - {t: '&tab_ctrl', h: '&command_grave'}
-  - '-'
-  - '='
-  - '&tt_key_cast'
+  - '&vi_prev_zero_rpt'
+  - '&vi_search_zero_rpt'
+  - Ctl+Gui+;
+  - Ctl+Gui+`
   - ''
   - ''
   - ''
   - ''
-  - Alt
-  - Ctrl
-  - Gui
-  - Shift
+  - ''
+  - ''
   - '&vim_yank_buff'
-  - '1'
-  - '2'
-  - '3'
-  - '4'
-  - '5'
+  - Ctl+6
+  - '&vi_prev_brace_rpt'
+  - '&vi_search_rpt'
+  - Gui+[
+  - Gui+]
+  - ''
   - ''
   - ''
   - ''
   - ''
   - ''
   - '&vi_terminal'
-  - F16
-  - '6'
-  - '7'
-  - '8'
-  - '9'
-  - '0'
-  - BACKSLASH
-  - {t: ▽, type: trans}
   - ''
-  - ''
-  - F16
-  - LEFT BRACE
-  - RIGHT BRACE
-  signs:
-  - ''
-  - ''
-  - ''
-  - ''
-  - ''
-  - ''
-  - Sft+-
-  - Sft+=
-  - Alt+=
-  - ''
-  - ''
-  - ''
-  - ''
-  - Alt
-  - Ctrl
-  - Gui
-  - ''
-  - ''
-  - Sft+1
-  - Sft+2
-  - Sft+3
-  - Sft+4
-  - Sft+5
+  - '&vi_prev_rpt'
+  - '&vi_next_rpt'
+  - Ctl+Alt+[
+  - Ctl+Alt+]
   - ''
   - ''
   - ''
@@ -289,29 +214,18 @@ layers:
   - ''
   - ''
   - ''
-  - Sft+6
-  - Sft+7
-  - Sft+8
-  - Sft+9
-  - Sft+0
-  - Sft+BACKSLASH
-  - {t: ▽, type: trans}
   - ''
-  - ''
-  - ''
-  - LEFT PARENTHESIS
-  - RIGHT PARENTHESIS
   l5:
   - ''
   - ''
-  - {t: Gui+Alt+Sft+6, type: held}
+  - {type: held}
+  - Alt+Ctl+Gui+E
+  - Sft+Gui+Alt+7
+  - Gui+Alt+Sft+6
   - ''
   - ''
   - ''
   - ''
-  - ''
-  - ''
-  - Sft+Alt+Gui+O
   - ''
   - ''
   - ''
@@ -323,7 +237,7 @@ layers:
   - ''
   - ''
   - ''
-  - Sft+Gui+Alt+4
+  - ''
   - ''
   - ''
   - ''
@@ -335,7 +249,7 @@ layers:
   - ''
   - ''
   - ''
-  - Sft+Gui+Alt+6
+  - ''
   - ''
   - ''
   - ''

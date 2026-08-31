@@ -17,6 +17,7 @@
 #define L5  5
 #define LBRK 6
 #define RBRK 7
+#define LBRK_HI 8
 
 #define MEH(key) LS(LC(LA(key)))
 
@@ -378,33 +379,9 @@
         };
 
 
-        vi_prev_method: vi_prev_method {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&kp LBracket &kp M>;
-        };
 
-        vi_next_method: vi_next_method {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&kp RBracket &kp M>;
-        };
 
-        vi_prev_rpt: vi_prev_rpt {
-            compatible = "zmk,behavior-tap-repeat";
-            #binding-cells = <0>;
-            bindings = <&vi_prev_method>;
-            wait-ms = <250>;
-            tap-ms = <100>;
-        };
 
-        vi_next_rpt: vi_next_rpt {
-            compatible = "zmk,behavior-tap-repeat";
-            #binding-cells = <0>;
-            bindings = <&vi_next_method>;
-            wait-ms = <250>;
-            tap-ms = <100>;
-        };
 
         vi_prev_brace_method: vi_prev_brace_method {
             compatible = "zmk,behavior-macro";
@@ -552,6 +529,25 @@
             retro-tap;
         };
 
+        // with shift down the bracket stops being a layer key and becomes a plain
+        // keypress, so holding it gives the OS its own auto-repeat: }}}}}}.
+        // keep-mods keeps the shift applied, so ] morphs to } rather than ].
+        MODMORPH(
+            brk_l,
+            &brk LBRK LBracket,
+            &kp LBracket,
+            (MOD_LSFT | MOD_RSFT),
+            (MOD_LSFT | MOD_RSFT)
+        )
+
+        MODMORPH(
+            brk_r,
+            &brk RBRK RBracket,
+            &kp RBracket,
+            (MOD_LSFT | MOD_RSFT),
+            (MOD_LSFT | MOD_RSFT)
+        )
+
     };
 
 };
@@ -564,7 +560,7 @@
             bindings = <
 ___         _ Q         _ W         _ E         _ R         _ T         _ Y         _ U         _ I         _ O         _ P         ___
 ___         _ A         _ S         _ D         _ F         _ G         _ H         _ J         _ K         _ L         _ Tilde     ___
-___         _ Z         _ X         _ C         _ V         _ B         _ N         _ M         _ Ampersand &brk LBRK LBracket &brk RBRK RBracket ___
+___         _ Z         _ X         _ C         _ V         _ B         _ N         _ M         _ Ampersand &brk_l      &brk_r      ___
                                                 _ CAPS     &la NAV    &la NUMS        &lt_tap_prefer_release ARW SPACE &la SYM ___
             >;
         };
@@ -600,7 +596,7 @@ ___         _ Backslash _ RA(Ampersand) _ Semicolon _ Comma     _ Under     _ Eq
             bindings = <
 ___         ___  ___  ___  &command_copy &command_grave_command 0 0  &vi_prev_zero_rpt &vi_search_zero_rpt    _ LC(LG(Tilde))          _ LC(LG(SQuot))       ___       ___
 ___         ___     ___     ___     &vim_yank_buff  _ LC(N6)     &vi_prev_brace_rpt &vi_search_rpt        _ LG(Comma) _ LG(Dot)  ___        ___
-___         ___         ___         ___         &vi_terminal   ___       &vi_prev_rpt &vi_next_rpt   _ LC(LA(Comma)) _ LC(LA(Dot)) ___ ___
+___         ___         ___         ___         &vi_terminal   ___       ___          ___   _ LC(LA(Comma)) _ LC(LA(Dot)) ___ ___
                                     ___      ___         ___         ___ ___ ___
             >;
         };
@@ -618,7 +614,7 @@ ___         _ LG(LA(LS(Z)))  _ LS(LA(LG(N2))) _ LG(LA(LS(N1))) _ LS(LA(LG(V))) _
             bindings = <
 ___         &rl_q       &rl_w       &rl_e       &rl_r       &rl_t       &rl_y       &rl_u       &rl_i       &rl_o       &rl_p       ___
 ___         &rl_a       &rl_s       &rl_d       &rl_f       &rl_g       &rl_h       &rl_j       &rl_k       &rl_l       ___         ___
-___         &rl_z       &rl_x       &rl_c       &rl_v       &rl_b       &rl_n       &rl_m       ___         ___         ___         ___
+___         &rl_z       &rl_x       &rl_c       &rl_v       &rl_b       &rl_n       &rl_m       ___         ___         &mo RBRK    ___
                                                 ___         ___         ___         ___         ___         ___
             >;
         };
@@ -627,7 +623,18 @@ ___         &rl_z       &rl_x       &rl_c       &rl_v       &rl_b       &rl_n   
             bindings = <
 ___         &rr_q       &rr_w       &rr_e       &rr_r       &rr_t       &rr_y       &rr_u       &rr_i       &rr_o       &rr_p       ___
 ___         &rr_a       &rr_s       &rr_d       &rr_f       &rr_g       &rr_h       &rr_j       &rr_k       &rr_l       ___         ___
-___         &rr_z       &rr_x       &rr_c       &rr_v       &rr_b       &rr_n       &rr_m       ___         ___         ___         ___
+___         &rr_z       &rr_x       &rr_c       &rr_v       &rr_b       &rr_n       &rr_m       ___         &mo LBRK_HI ___         ___
+                                                ___         ___         ___         ___         ___         ___
+            >;
+        };
+
+        // reached from RBRK: same as LBRK but ranked above it, so `[` wins
+        // while `]` is still held. one hop only — there is no layer above this.
+        lbrk_hi_layer {
+            bindings = <
+___         &rl_q       &rl_w       &rl_e       &rl_r       &rl_t       &rl_y       &rl_u       &rl_i       &rl_o       &rl_p       ___
+___         &rl_a       &rl_s       &rl_d       &rl_f       &rl_g       &rl_h       &rl_j       &rl_k       &rl_l       ___         ___
+___         &rl_z       &rl_x       &rl_c       &rl_v       &rl_b       &rl_n       &rl_m       ___         ___         ___         ___
                                                 ___         ___         ___         ___         ___         ___
             >;
         };

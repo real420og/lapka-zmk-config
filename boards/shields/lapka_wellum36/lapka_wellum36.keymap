@@ -103,6 +103,17 @@
         keep-mods = <(KEEP_MODS)>; \
     };
 
+// firmware auto-repeat: taps BIND once on press, then every tap-ms after a
+// wait-ms grace period. a quick tap therefore still fires exactly once.
+#define TAP_REPEAT(NAME, BIND) \
+    NAME: NAME { \
+        compatible = "zmk,behavior-tap-repeat"; \
+        #binding-cells = <0>; \
+        bindings = <BIND>; \
+        wait-ms = <250>; \
+        tap-ms = <100>; \
+    };
+
 &sk {
         release-after-ms = <60000>;
 };
@@ -240,6 +251,62 @@
             &kp RBracket
                 &macro_param_1to1 &kp PARAM_1
         )
+
+        // hold a letter here to auto-repeat the [ pair
+        TAP_REPEAT(rl_q, &m_lbrk Q)
+        TAP_REPEAT(rl_w, &m_lbrk W)
+        TAP_REPEAT(rl_e, &m_lbrk E)
+        TAP_REPEAT(rl_r, &m_lbrk R)
+        TAP_REPEAT(rl_t, &m_lbrk T)
+        TAP_REPEAT(rl_y, &m_lbrk Y)
+        TAP_REPEAT(rl_u, &m_lbrk U)
+        TAP_REPEAT(rl_i, &m_lbrk I)
+        TAP_REPEAT(rl_o, &m_lbrk O)
+        TAP_REPEAT(rl_p, &m_lbrk P)
+        TAP_REPEAT(rl_a, &m_lbrk A)
+        TAP_REPEAT(rl_s, &m_lbrk S)
+        TAP_REPEAT(rl_d, &m_lbrk D)
+        TAP_REPEAT(rl_f, &m_lbrk F)
+        TAP_REPEAT(rl_g, &m_lbrk G)
+        TAP_REPEAT(rl_h, &m_lbrk H)
+        TAP_REPEAT(rl_j, &m_lbrk J)
+        TAP_REPEAT(rl_k, &m_lbrk K)
+        TAP_REPEAT(rl_l, &m_lbrk L)
+        TAP_REPEAT(rl_z, &m_lbrk Z)
+        TAP_REPEAT(rl_x, &m_lbrk X)
+        TAP_REPEAT(rl_c, &m_lbrk C)
+        TAP_REPEAT(rl_v, &m_lbrk V)
+        TAP_REPEAT(rl_b, &m_lbrk B)
+        TAP_REPEAT(rl_n, &m_lbrk N)
+        TAP_REPEAT(rl_m, &m_lbrk M)
+
+        // hold a letter here to auto-repeat the ] pair
+        TAP_REPEAT(rr_q, &m_rbrk Q)
+        TAP_REPEAT(rr_w, &m_rbrk W)
+        TAP_REPEAT(rr_e, &m_rbrk E)
+        TAP_REPEAT(rr_r, &m_rbrk R)
+        TAP_REPEAT(rr_t, &m_rbrk T)
+        TAP_REPEAT(rr_y, &m_rbrk Y)
+        TAP_REPEAT(rr_u, &m_rbrk U)
+        TAP_REPEAT(rr_i, &m_rbrk I)
+        TAP_REPEAT(rr_o, &m_rbrk O)
+        TAP_REPEAT(rr_p, &m_rbrk P)
+        TAP_REPEAT(rr_a, &m_rbrk A)
+        TAP_REPEAT(rr_s, &m_rbrk S)
+        TAP_REPEAT(rr_d, &m_rbrk D)
+        TAP_REPEAT(rr_f, &m_rbrk F)
+        TAP_REPEAT(rr_g, &m_rbrk G)
+        TAP_REPEAT(rr_h, &m_rbrk H)
+        TAP_REPEAT(rr_j, &m_rbrk J)
+        TAP_REPEAT(rr_k, &m_rbrk K)
+        TAP_REPEAT(rr_l, &m_rbrk L)
+        TAP_REPEAT(rr_z, &m_rbrk Z)
+        TAP_REPEAT(rr_x, &m_rbrk X)
+        TAP_REPEAT(rr_c, &m_rbrk C)
+        TAP_REPEAT(rr_v, &m_rbrk V)
+        TAP_REPEAT(rr_b, &m_rbrk B)
+        TAP_REPEAT(rr_n, &m_rbrk N)
+        TAP_REPEAT(rr_m, &m_rbrk M)
 
         tab_command: tab_command {
             compatible = "zmk,behavior-macro";
@@ -549,18 +616,18 @@ ___         _ LG(LA(LS(Z)))  _ LS(LA(LG(N2))) _ LG(LA(LS(N1))) _ LS(LA(LG(V))) _
 
         lbrk_layer {
             bindings = <
-___         &m_lbrk Q   &m_lbrk W   &m_lbrk E   &m_lbrk R   &m_lbrk T   &m_lbrk Y   &m_lbrk U   &m_lbrk I   &m_lbrk O   &m_lbrk P   ___
-___         &m_lbrk A   &m_lbrk S   &m_lbrk D   &m_lbrk F   &m_lbrk G   &m_lbrk H   &m_lbrk J   &m_lbrk K   &m_lbrk L   ___         ___
-___         &m_lbrk Z   &m_lbrk X   &m_lbrk C   &m_lbrk V   &m_lbrk B   &m_lbrk N   &m_lbrk M   ___         ___         ___         ___
+___         &rl_q       &rl_w       &rl_e       &rl_r       &rl_t       &rl_y       &rl_u       &rl_i       &rl_o       &rl_p       ___
+___         &rl_a       &rl_s       &rl_d       &rl_f       &rl_g       &rl_h       &rl_j       &rl_k       &rl_l       ___         ___
+___         &rl_z       &rl_x       &rl_c       &rl_v       &rl_b       &rl_n       &rl_m       ___         ___         ___         ___
                                                 ___         ___         ___         ___         ___         ___
             >;
         };
 
         rbrk_layer {
             bindings = <
-___         &m_rbrk Q   &m_rbrk W   &m_rbrk E   &m_rbrk R   &m_rbrk T   &m_rbrk Y   &m_rbrk U   &m_rbrk I   &m_rbrk O   &m_rbrk P   ___
-___         &m_rbrk A   &m_rbrk S   &m_rbrk D   &m_rbrk F   &m_rbrk G   &m_rbrk H   &m_rbrk J   &m_rbrk K   &m_rbrk L   ___         ___
-___         &m_rbrk Z   &m_rbrk X   &m_rbrk C   &m_rbrk V   &m_rbrk B   &m_rbrk N   &m_rbrk M   ___         ___         ___         ___
+___         &rr_q       &rr_w       &rr_e       &rr_r       &rr_t       &rr_y       &rr_u       &rr_i       &rr_o       &rr_p       ___
+___         &rr_a       &rr_s       &rr_d       &rr_f       &rr_g       &rr_h       &rr_j       &rr_k       &rr_l       ___         ___
+___         &rr_z       &rr_x       &rr_c       &rr_v       &rr_b       &rr_n       &rr_m       ___         ___         ___         ___
                                                 ___         ___         ___         ___         ___         ___
             >;
         };

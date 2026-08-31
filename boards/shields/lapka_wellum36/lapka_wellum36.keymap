@@ -15,6 +15,8 @@
 #define SYM 3
 #define NUMS 4
 #define L5  5
+#define LBRK 6
+#define RBRK 7
 
 #define MEH(key) LS(LC(LA(key)))
 
@@ -223,6 +225,20 @@
                 &kp LCTRL
                 &kp LALT
                 &kp LGUI
+        )
+
+        // bracket-prefix macros: tap the bracket, then the letter passed as param.
+        // used by the LBRK / RBRK layers to build vim motions like ]m, [c, ]b.
+        MACRO_ONE_PARAM(
+            m_lbrk,
+            &kp LBracket
+                &macro_param_1to1 &kp PARAM_1
+        )
+
+        MACRO_ONE_PARAM(
+            m_rbrk,
+            &kp RBracket
+                &macro_param_1to1 &kp PARAM_1
         )
 
         tab_command: tab_command {
@@ -455,6 +471,20 @@
             retro-tap;
         };
 
+        // tap = the bracket itself, hold = its prefix layer.
+        // tap-preferred so that rolling `[abc` while typing code stays literal:
+        // the hold only wins if the bracket is still down after tapping-term.
+        // hold-binding is &la (not &mo) so pending sticky callum-mods are fired
+        // before entering the layer and cleared on exit.
+        brk: brk {
+            compatible = "zmk,behavior-hold-tap";
+            bindings = <&la>, <&kp>;
+            #binding-cells = <2>;
+            tapping-term-ms = <200>;
+            flavor = "tap-preferred";
+            retro-tap;
+        };
+
     };
 
 };
@@ -467,7 +497,7 @@
             bindings = <
 ___         _ Q         _ W         _ E         _ R         _ T         _ Y         _ U         _ I         _ O         _ P         ___
 ___         _ A         _ S         _ D         _ F         _ G         _ H         _ J         _ K         _ L         _ Tilde     ___
-___         _ Z         _ X         _ C         _ V         _ B         _ N         _ M         _ Ampersand _ LBracket  _ RBracket  ___
+___         _ Z         _ X         _ C         _ V         _ B         _ N         _ M         _ Ampersand &brk LBRK LBracket &brk RBRK RBracket ___
                                                 _ CAPS     &la NAV    &la NUMS        &lt_tap_prefer_release ARW SPACE &la SYM ___
             >;
         };
@@ -514,6 +544,24 @@ ___         ___              ___ _ LA(LC(LG(E)))  _ LS(LG(LA(N7)))             _
 ___         _ LS(LA(LG(N5))) _ LG(LA(LS(P)))  _ LG(LA(LS(D)))  _ LS(LA(LG(F))) _ LG(LA(LS(G)))  ___    ___    ___ ___ ___       ___
 ___         _ LG(LA(LS(Z)))  _ LS(LA(LG(N2))) _ LG(LA(LS(N1))) _ LS(LA(LG(V))) _ LG(LA(LS(N3))) ___    ___    ___ ___ ___       ___
                                               ___              ___             ___              ___         ___         ___
+            >;
+        };
+
+        lbrk_layer {
+            bindings = <
+___         &m_lbrk Q   &m_lbrk W   &m_lbrk E   &m_lbrk R   &m_lbrk T   &m_lbrk Y   &m_lbrk U   &m_lbrk I   &m_lbrk O   &m_lbrk P   ___
+___         &m_lbrk A   &m_lbrk S   &m_lbrk D   &m_lbrk F   &m_lbrk G   &m_lbrk H   &m_lbrk J   &m_lbrk K   &m_lbrk L   ___         ___
+___         &m_lbrk Z   &m_lbrk X   &m_lbrk C   &m_lbrk V   &m_lbrk B   &m_lbrk N   &m_lbrk M   ___         ___         ___         ___
+                                                ___         ___         ___         ___         ___         ___
+            >;
+        };
+
+        rbrk_layer {
+            bindings = <
+___         &m_rbrk Q   &m_rbrk W   &m_rbrk E   &m_rbrk R   &m_rbrk T   &m_rbrk Y   &m_rbrk U   &m_rbrk I   &m_rbrk O   &m_rbrk P   ___
+___         &m_rbrk A   &m_rbrk S   &m_rbrk D   &m_rbrk F   &m_rbrk G   &m_rbrk H   &m_rbrk J   &m_rbrk K   &m_rbrk L   ___         ___
+___         &m_rbrk Z   &m_rbrk X   &m_rbrk C   &m_rbrk V   &m_rbrk B   &m_rbrk N   &m_rbrk M   ___         ___         ___         ___
+                                                ___         ___         ___         ___         ___         ___
             >;
         };
     };

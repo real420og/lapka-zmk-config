@@ -13,7 +13,7 @@ layers:
   - O
   - P
   - ''
-  - Q
+  - ''
   - A
   - S
   - D
@@ -24,7 +24,7 @@ layers:
   - K
   - L
   - ;
-  - P
+  - ''
   - ''
   - Z
   - X
@@ -34,8 +34,8 @@ layers:
   - N
   - M
   - ','
-  - .
-  - /
+  - {t: ., h: '&la 6', s: .}
+  - {t: /, h: '&la 7', s: /}
   - ''
   - Caps
   - NAV
@@ -95,9 +95,9 @@ layers:
   - Esc
   - Alt+[
   - Alt+]
+  - Alt+I
   - ''
-  - AltGr+O
-  - AltGr+P
+  - ''
   - ''
   - Alt+Ctl+Gui+G
   - sticky ⌥
@@ -131,13 +131,13 @@ layers:
   - {t: ▽, type: trans}
   sym:
   - ''
+  - {t: ▽, type: trans}
   - ''
   - ''
   - ''
   - ''
-  - ''
-  - ''
-  - ''
+  - AltGr+O
+  - AltGr+P
   - ''
   - ''
   - ''
@@ -179,8 +179,8 @@ layers:
   - ''
   - '&command_copy'
   - {t: '&tab_ctrl', h: '&command_grave'}
-  - Ctl+Alt+[
-  - Ctl+Alt+]
+  - '&vi_prev_zero_rpt'
+  - '&vi_search_zero_rpt'
   - Ctl+Gui+;
   - Ctl+Gui+`
   - ''
@@ -190,7 +190,7 @@ layers:
   - ''
   - ''
   - '&vim_yank_buff'
-  - ''
+  - Ctl+6
   - '&vi_prev_brace_rpt'
   - '&vi_search_rpt'
   - Gui+[
@@ -203,10 +203,10 @@ layers:
   - ''
   - '&vi_terminal'
   - ''
-  - '&vi_prev_rpt'
-  - '&vi_next_rpt'
   - ''
   - ''
+  - Ctl+Alt+[
+  - Ctl+Alt+]
   - ''
   - ''
   - ''
@@ -218,10 +218,10 @@ layers:
   l5:
   - ''
   - ''
-  - {t: Gui+Alt+Sft+6, type: held}
+  - {type: held}
   - Alt+Ctl+Gui+E
   - Sft+Gui+Alt+7
-  - ''
+  - Gui+Alt+Sft+6
   - ''
   - ''
   - ''
@@ -258,3 +258,7 @@ layers:
   - ''
   - ''
   - ''
+  lbrk: ['', '&rl_q', '&rl_w', '&rl_e', '&rl_r', '&rl_t', '&rl_y', '&rl_u', '&rl_i', '&rl_o', '&rl_p', '', '', '&rl_a', '&rl_s', '&rl_d', '&rl_f', '&rl_g', '&rl_h',
+    '&rl_j', '&rl_k', '&rl_l', '', '', '', '&rl_z', '&rl_x', '&rl_c', '&rl_v', '&rl_b', '&rl_n', '&rl_m', '', '', '&brk_swap 6 7', '', '', '', '', '', '', '']
+  rbrk: ['', '&rr_q', '&rr_w', '&rr_e', '&rr_r', '&rr_t', '&rr_y', '&rr_u', '&rr_i', '&rr_o', '&rr_p', '', '', '&rr_a', '&rr_s', '&rr_d', '&rr_f', '&rr_g', '&rr_h',
+    '&rr_j', '&rr_k', '&rr_l', '', '', '', '&rr_z', '&rr_x', '&rr_c', '&rr_v', '&rr_b', '&rr_n', '&rr_m', '', '&brk_swap 7 6', '', '', '', '', '', '', '', '']

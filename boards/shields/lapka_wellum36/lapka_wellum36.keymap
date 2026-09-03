@@ -17,7 +17,6 @@
 #define L5  5
 #define LBRK 6
 #define RBRK 7
-#define LBRK_HI 8
 
 #define MEH(key) LS(LC(LA(key)))
 
@@ -237,6 +236,30 @@
                 &kp LCTRL
                 &kp LALT
                 &kp LGUI
+        )
+
+        // explicit layer-off, so a bracket can extinguish the prefix layer it
+        // came from. toggle-mode "off" (not the default "flip") keeps this
+        // idempotent if the layer is somehow already down.
+        lay_off: lay_off {
+            compatible = "zmk,behavior-toggle-layer";
+            #binding-cells = <1>;
+            toggle-mode = "off";
+        };
+
+        // cross-switch between the two prefix layers: leave PARAM_1, hold
+        // PARAM_2. killing the source layer is what makes this work in both
+        // directions -- ZMK picks the binding from the highest active layer
+        // (zmk_keymap_position_state_changed), so plain &mo could only ever
+        // climb upwards and the chain died after two hops.
+        MACRO_TWO_PARAM(
+            brk_swap,
+            &macro_param_1to1 &lay_off PARAM_1
+            &macro_press
+                &macro_param_2to1 &mo PARAM_2
+            &macro_pause_for_release
+            &macro_release
+                &macro_param_2to1 &mo PARAM_2
         )
 
         // bracket-prefix macros: tap the bracket, then the letter passed as param.
@@ -614,7 +637,7 @@ ___         _ LG(LA(LS(Z)))  _ LS(LA(LG(N2))) _ LG(LA(LS(N1))) _ LS(LA(LG(V))) _
             bindings = <
 ___         &rl_q       &rl_w       &rl_e       &rl_r       &rl_t       &rl_y       &rl_u       &rl_i       &rl_o       &rl_p       ___
 ___         &rl_a       &rl_s       &rl_d       &rl_f       &rl_g       &rl_h       &rl_j       &rl_k       &rl_l       ___         ___
-___         &rl_z       &rl_x       &rl_c       &rl_v       &rl_b       &rl_n       &rl_m       ___         ___         &mo RBRK    ___
+___         &rl_z       &rl_x       &rl_c       &rl_v       &rl_b       &rl_n       &rl_m       ___         ___    &brk_swap LBRK RBRK ___
                                                 ___         ___         ___         ___         ___         ___
             >;
         };
@@ -623,18 +646,7 @@ ___         &rl_z       &rl_x       &rl_c       &rl_v       &rl_b       &rl_n   
             bindings = <
 ___         &rr_q       &rr_w       &rr_e       &rr_r       &rr_t       &rr_y       &rr_u       &rr_i       &rr_o       &rr_p       ___
 ___         &rr_a       &rr_s       &rr_d       &rr_f       &rr_g       &rr_h       &rr_j       &rr_k       &rr_l       ___         ___
-___         &rr_z       &rr_x       &rr_c       &rr_v       &rr_b       &rr_n       &rr_m       ___         &mo LBRK_HI ___         ___
-                                                ___         ___         ___         ___         ___         ___
-            >;
-        };
-
-        // reached from RBRK: same as LBRK but ranked above it, so `[` wins
-        // while `]` is still held. one hop only — there is no layer above this.
-        lbrk_hi_layer {
-            bindings = <
-___         &rl_q       &rl_w       &rl_e       &rl_r       &rl_t       &rl_y       &rl_u       &rl_i       &rl_o       &rl_p       ___
-___         &rl_a       &rl_s       &rl_d       &rl_f       &rl_g       &rl_h       &rl_j       &rl_k       &rl_l       ___         ___
-___         &rl_z       &rl_x       &rl_c       &rl_v       &rl_b       &rl_n       &rl_m       ___         ___         ___         ___
+___         &rr_z       &rr_x       &rr_c       &rr_v       &rr_b       &rr_n       &rr_m       ___    &brk_swap RBRK LBRK ___         ___
                                                 ___         ___         ___         ___         ___         ___
             >;
         };

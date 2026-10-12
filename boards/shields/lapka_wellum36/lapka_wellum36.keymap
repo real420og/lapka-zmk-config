@@ -17,7 +17,6 @@
 #define L5  5
 #define LBRK 6
 #define RBRK 7
-#define REOPEN 8
 
 #define MEH(key) LS(LC(LA(key)))
 
@@ -117,10 +116,6 @@
 
 &sk {
         release-after-ms = <60000>;
-};
-
-&sl {
-        release-after-ms = <MAX_TIMER>;
 };
 
 / {
@@ -589,7 +584,7 @@
 ___         _ Q         _ W         _ E         _ R         _ T         _ Y         _ U         _ I         _ O         _ P         ___
 ___         _ A         _ S         _ D         _ F         _ G         _ H         _ J         _ K         _ L         _ Tilde     ___
 ___         _ Z         _ X         _ C         _ V         _ B         _ N         _ M         _ Ampersand &brk_l      &brk_r      ___
-                                                _ CAPS     &la NAV    &la NUMS        &lt_tap_prefer_release ARW SPACE &la SYM &sl REOPEN
+                                                _ CAPS     &la NAV    &la NUMS        &lt_tap_prefer_release ARW SPACE &la SYM ___
             >;
         };
 
@@ -653,15 +648,6 @@ ___         &rr_q       &rr_w       &rr_e       &rr_r       &rr_t       &rr_y   
 ___         &rr_a       &rr_s       &rr_d       &rr_f       &rr_g       &rr_h       &rr_j       &rr_k       &rr_l       ___         ___
 ___         &rr_z       &rr_x       &rr_c       &rr_v       &rr_b       &rr_n       &rr_m       ___    &brk_swap RBRK LBRK ___         ___
                                                 ___         ___         ___         ___         ___         ___
-            >;
-        };
-
-        reopen_layer {
-            bindings = <
-______      ______      ______      ______      ______      ______      ______      ______      ______      ______      ______      ______
-______      ______      ______      ______      ______      ______      ______      ______      ______      ______      ______      ______
-______      ______      ______      ______      ______      ______      ______      ______      ______      ______      ______      ______
-                                                ______      ______      ______      ______      ______      &kp LG(LS(T))
             >;
         };
     };

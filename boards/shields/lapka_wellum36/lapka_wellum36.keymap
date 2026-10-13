@@ -599,7 +599,7 @@ _ LS(LA(N1)) _ F11      _ F12       _ C_VOL_DN  _ C_VOL_UP  _ C_MUTE    _ LS(LC(
 
         nav_layer {
             bindings = <
-___         _ LA(LC(LG(G)))  &tab_command_tab 0 L5  _ LA(LC(LG(F)))  _ BSPC      _ ESC       _ LA(Comma) _ LA(Dot)  _ LA(I)         ___       ___         ___
+___         _ LA(LC(LG(G)))  &tab_command_tab 0 L5  _ LA(LC(LG(F)))  _ BSPC      _ ESC       _ LA(Y) _ LA(U)  _ LA(I)         ___       ___         ___
 _ LA(LC(LG(G)))         &cm_alt     &cm_ctl              &cm_gui      &cm_sft      _ RET       _ N1    _ N2    _ N3    _ N4    _ N5    _ RA(P)
 ___         &zq_shift   _ LG(X)              _ LG(C)          _ LG(V)   _ TAB          _ N6    _ N7    _ N8    _ N9    _ N0    ___
                                             ___     ___               ___        &lt_tap_prefer_release ARW SPACE ______ ______

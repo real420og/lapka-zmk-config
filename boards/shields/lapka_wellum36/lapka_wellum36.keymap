@@ -332,6 +332,12 @@
         TAP_REPEAT(rr_n, &m_rbrk N)
         TAP_REPEAT(rr_m, &m_rbrk M)
 
+        // shifted symbols as an instant tap: a held LS(x) keeps its implicit
+        // shift until the next key press, and that release lands in the same
+        // HID report as the new key. macOS applies it after the key, so a
+        // rolled ":q" came out as ":Q". tapping keeps shift out of the overlap.
+        TAP_REPEAT(s_colon, &kp Colon)
+
         tab_command: tab_command {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
@@ -610,7 +616,7 @@ ___         &zq_shift   _ LG(X)              _ LG(C)          _ LG(V)   _ TAB   
             bindings = <
 ___         ______        ___        ___        ___        ___        _ RA(O)       _ RA(P)        ___        ___        ___        ___
 ___         _ Tilde     _ Grave     _ SQuot     _ DQuot     _ Minus     _ Plus      &cm_sft     &cm_gui     &cm_ctl     &cm_ralt    ___
-___         _ Backslash _ RA(Ampersand) _ Semicolon _ Comma     _ Under     _ Equal     _ Dot       _ Colon     _ Pipe      _ Slash     ___
+___         _ Backslash _ RA(Ampersand) _ Semicolon _ Comma     _ Under     _ Equal     _ Dot       &s_colon    _ Pipe      _ Slash     ___
                         ___               &lt_la_tui NAV LC(SPACE)     ______       ______      ______      ___
             >;
         };

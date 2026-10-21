@@ -7,6 +7,8 @@
 - `lapka_wellum36_right`
 - `lapka_wellum36_dongle`
 
+Заряд обеих половинок можно смотреть в строке меню macOS через USB-донгл: [приложение для macOS](macos/LapkaBattery/README.md) и [документация USB-доработки ZMK](docs/usb-split-battery-zmk.md).
+
 Чтобы перевести половинку в режим прошивки, нажмите кнопку Reset дважды.
 Чтобы перевести донгл в режим прошивки, замкните пины RST и GND дважды.
 
@@ -28,6 +30,8 @@ This version uses Dongle and consists of three parts:
 - `lapka_wellum36_left`
 - `lapka_wellum36_right`
 - `lapka_wellum36_dongle`
+
+Battery levels for both halves can be shown in the macOS menu bar over the USB dongle: [macOS app](macos/LapkaBattery/README.md) and [ZMK USB integration guide](docs/usb-split-battery-zmk.md).
 
 To turn half into bootloader mode, press reset button twice.
 To turn dongle into bootloader mode, short RST and GND pins twice.

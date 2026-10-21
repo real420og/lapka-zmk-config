@@ -4,3 +4,8 @@ config ZMK_BEHAVIOR_TAP_REPEAT
     bool
     default y
     depends on DT_HAS_ZMK_BEHAVIOR_TAP_REPEAT_ENABLED
+
+config ZMK_USB_SPLIT_BATTERY
+    bool "Expose split battery levels over a USB HID interface"
+    depends on ZMK_USB && ZMK_SPLIT_ROLE_CENTRAL && ZMK_SPLIT_BLE_CENTRAL_BATTERY_LEVEL_FETCHING
+    default n

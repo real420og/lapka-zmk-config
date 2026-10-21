@@ -1,14 +1,18 @@
 /* SPDX-License-Identifier: MIT */
 
 #include <errno.h>
+#include <dt-bindings/zmk/reset.h>
 #include <zephyr/device.h>
 #include <zephyr/init.h>
+#include <zephyr/kernel.h>
+#include <zephyr/sys/reboot.h>
 #include <zephyr/usb/class/usb_hid.h>
 #include <zephyr/usb/usb_device.h>
 #include <zmk/split/bluetooth/central.h>
 
 #define BATTERY_REPORT_ID 0x04
 #define BATTERY_UNKNOWN 0xFF
+#define BOOTLOADER_REPORT_ID 0x05
 
 /* Vendor page 0xFF00, usage 1; input report: ID, slot 0, slot 1. */
 static const uint8_t report_descriptor[] = {
@@ -23,10 +27,22 @@ static const uint8_t report_descriptor[] = {
     0x09, 0x01,             /* Usage: slot 0 */
     0x09, 0x02,             /* Usage: slot 1 */
     0x81, 0x02,             /* Input: data, variable, absolute */
+    0x85, BOOTLOADER_REPORT_ID,
+    0x95, 0x02,             /* Two command bytes */
+    0x09, 0x03,             /* Usage: command byte 1 */
+    0x09, 0x04,             /* Usage: command byte 2 */
+    0xB1, 0x02,             /* Feature: data, variable, absolute */
     0xC0,
 };
 
 static uint8_t report[3] = {BATTERY_REPORT_ID, BATTERY_UNKNOWN, BATTERY_UNKNOWN};
+
+static void enter_bootloader(struct k_work *work) {
+    ARG_UNUSED(work);
+    sys_reboot(RST_UF2);
+}
+
+K_WORK_DELAYABLE_DEFINE(bootloader_work, enter_bootloader);
 
 static int get_report(const struct device *dev, struct usb_setup_packet *setup, int32_t *len,
                       uint8_t **data) {
@@ -45,7 +61,22 @@ static int get_report(const struct device *dev, struct usb_setup_packet *setup, 
     return 0;
 }
 
-static const struct hid_ops hid_ops = {.get_report = get_report};
+static int set_report(const struct device *dev, struct usb_setup_packet *setup, int32_t *len,
+                      uint8_t **data) {
+    ARG_UNUSED(dev);
+    if (setup->wValue != (0x300 | BOOTLOADER_REPORT_ID)) {
+        return -ENOTSUP;
+    }
+    if (*len != 3 || !*data || (*data)[0] != BOOTLOADER_REPORT_ID || (*data)[1] != 0xA5 ||
+        (*data)[2] != 0x5A) {
+        return -EINVAL;
+    }
+    /* Finish the USB control transfer before the dongle disconnects. */
+    k_work_schedule(&bootloader_work, K_MSEC(250));
+    return 0;
+}
+
+static const struct hid_ops hid_ops = {.get_report = get_report, .set_report = set_report};
 
 static int split_battery_hid_init(void) {
     const struct device *hid = device_get_binding("HID_1");

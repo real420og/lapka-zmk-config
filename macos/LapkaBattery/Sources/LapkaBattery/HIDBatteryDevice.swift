@@ -37,4 +37,33 @@ final class HIDBatteryDevice {
         }
         return nil
     }
+
+    func enterBootloader() -> Bool {
+        guard let devices = IOHIDManagerCopyDevices(manager) as? Set<IOHIDDevice> else {
+            return false
+        }
+        for device in devices {
+            guard IOHIDDeviceOpen(device, IOOptionBits(kIOHIDOptionsTypeNone)) == kIOReturnSuccess else {
+                continue
+            }
+            defer { IOHIDDeviceClose(device, IOOptionBits(kIOHIDOptionsTypeNone)) }
+            var batteryBytes: [UInt8] = [BatteryReport.reportID, 0, 0]
+            var batteryLength = batteryBytes.count
+            let readResult = batteryBytes.withUnsafeMutableBufferPointer { buffer in
+                IOHIDDeviceGetReport(device, kIOHIDReportTypeInput, CFIndex(BatteryReport.reportID),
+                                     buffer.baseAddress!, &batteryLength)
+            }
+            guard readResult == kIOReturnSuccess,
+                  BatteryReport(bytes: Array(batteryBytes.prefix(batteryLength))) != nil else {
+                continue
+            }
+            let bytes = BootloaderCommand.bytes
+            let result = bytes.withUnsafeBufferPointer { buffer in
+                IOHIDDeviceSetReport(device, kIOHIDReportTypeFeature, CFIndex(BootloaderCommand.reportID),
+                                     buffer.baseAddress!, buffer.count)
+            }
+            if result == kIOReturnSuccess { return true }
+        }
+        return false
+    }
 }

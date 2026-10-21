@@ -4,13 +4,13 @@ The Lapka Wellum 36 dongle is the ZMK split central and already fetches two peri
 
 ## Firmware
 
-The dongle exposes a second USB HID interface with vendor usage page `0xFF00`, usage `0x01`, and input report ID `0x04`. A three-byte report contains the ID followed by the battery percentages for split peripheral slots 0 and 1. `0xFF` means a slot is disconnected or has no reading; 0 through 100 are valid charge levels. The HID GET_REPORT handler reads ZMK's current split battery cache and connection state, so the Mac can obtain values immediately after starting. The extra interface is enabled only for the dongle by a Kconfig option. The keyboard HID interface and both peripheral firmwares remain as they are.
+The dongle exposes a second USB HID interface with vendor usage page `0xFF00`, usage `0x01`, and input report ID `0x04`. A three-byte report contains the ID followed by the battery percentages for split peripheral slots 0 and 1. `0xFF` means a slot is disconnected or has no reading; 0 through 100 are valid charge levels. The HID GET_REPORT handler reads ZMK's current split battery cache and connection state, so the Mac can obtain values immediately after starting. Feature report ID `0x05` with bytes `05 A5 5A` asks only the dongle to enter its UF2 bootloader after a short delay. The extra interface is enabled only for the dongle by a Kconfig option. The keyboard HID interface and both peripheral firmwares remain as they are.
 
 ZMK numbers peripherals by pairing slot, not by physical side. The app labels slots left and right by default and offers a swap toggle in its menu.
 
 ## macOS app
 
-A small native Swift/AppKit status item polls the HID input report every 15 seconds. It shows `Л 85% · П 72%`, or a dash for missing values. Its menu gives per-side readings, a swap setting, refresh, and quit. The app has `LSUIElement=YES` and opens no window or Dock icon. A build script packages an `.app` bundle without third-party dependencies. The user may add the app to Login Items in macOS settings.
+A small native Swift/AppKit status item polls the HID input report every 15 seconds. It shows `Л 85% · П 72%`, or a dash for missing values. Its menu gives per-side readings, a swap setting, refresh, bootloader mode, and quit. Entering bootloader mode requires two menu clicks within 10 seconds and creates no separate window. The app has `LSUIElement=YES` and opens no window or Dock icon. A build script packages an `.app` bundle without third-party dependencies. The user may add the app to Login Items in macOS settings.
 
 ## Verification and limitations
 

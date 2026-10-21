@@ -11,3 +11,4 @@
 - [x] Add the dongle-only USB HID GET_REPORT handler and config. The user will build firmware through GitHub Actions.
 - [x] Implement HID discovery and menu bar display; compile and package the macOS app.
 - [x] Document the reusable ZMK changes and installation steps; verify Swift tests and app build.
+- [x] Add a guarded USB Feature Report for dongle UF2 mode and a two-click menu action; document the command and test its encoding and confirmation logic.

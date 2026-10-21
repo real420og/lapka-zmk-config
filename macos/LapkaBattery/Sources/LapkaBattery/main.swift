@@ -6,8 +6,11 @@ final class BatteryApp: NSObject, NSApplicationDelegate {
     private var leftItem: NSMenuItem!
     private var rightItem: NSMenuItem!
     private var swapItem: NSMenuItem!
+    private var bootloaderItem: NSMenuItem!
     private var timer: Timer?
     private var swapped = UserDefaults.standard.bool(forKey: "swapHalves")
+    private var bootloaderConfirmation = BootloaderConfirmation()
+    private var bootloaderResetWork: DispatchWorkItem?
 
     func applicationDidFinishLaunching(_ notification: Notification) {
         statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
@@ -24,6 +27,10 @@ final class BatteryApp: NSObject, NSApplicationDelegate {
         let refreshItem = NSMenuItem(title: "Обновить", action: #selector(refresh), keyEquivalent: "r")
         refreshItem.target = self
         menu.addItem(refreshItem)
+        menu.addItem(.separator())
+        bootloaderItem = NSMenuItem(title: "Режим прошивки донгла…", action: #selector(bootloaderClicked), keyEquivalent: "")
+        bootloaderItem.target = self
+        menu.addItem(bootloaderItem)
         menu.addItem(.separator())
         let quitItem = NSMenuItem(title: "Выход", action: #selector(quit), keyEquivalent: "q")
         quitItem.target = self
@@ -56,6 +63,28 @@ final class BatteryApp: NSObject, NSApplicationDelegate {
         statusItem.button?.title = report.menuBarTitle(swapped: swapped)
         leftItem.title = "Левая: \(display(left))"
         rightItem.title = "Правая: \(display(right))"
+    }
+
+    @objc private func bootloaderClicked() {
+        if !bootloaderConfirmation.click(at: Date.timeIntervalSinceReferenceDate) {
+            bootloaderItem.title = "Подтвердить: режим прошивки донгла"
+            bootloaderResetWork?.cancel()
+            let reset = DispatchWorkItem { [weak self] in
+                self?.bootloaderConfirmation.cancel()
+                self?.bootloaderItem.title = "Режим прошивки донгла…"
+            }
+            bootloaderResetWork = reset
+            DispatchQueue.main.asyncAfter(deadline: .now() + 10, execute: reset)
+            return
+        }
+        bootloaderResetWork?.cancel()
+        bootloaderResetWork = nil
+        bootloaderItem.title = "Режим прошивки донгла…"
+        if device.enterBootloader() {
+            statusItem.button?.title = "Донгл: загрузчик"
+        } else {
+            bootloaderItem.title = "Донгл не найден — повторить"
+        }
     }
 
     @objc private func quit() { NSApplication.shared.terminate(nil) }

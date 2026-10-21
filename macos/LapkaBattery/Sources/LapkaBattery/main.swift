@@ -1,4 +1,5 @@
 import AppKit
+import ServiceManagement
 
 final class BatteryApp: NSObject, NSApplicationDelegate {
     private let device = HIDBatteryDevice()
@@ -7,6 +8,7 @@ final class BatteryApp: NSObject, NSApplicationDelegate {
     private var rightItem: NSMenuItem!
     private var swapItem: NSMenuItem!
     private var bootloaderItem: NSMenuItem!
+    private var launchAtLoginItem: NSMenuItem!
     private var timer: Timer?
     private var swapped = UserDefaults.standard.bool(forKey: "swapHalves")
     private var bootloaderConfirmation = BootloaderConfirmation()
@@ -32,10 +34,26 @@ final class BatteryApp: NSObject, NSApplicationDelegate {
         bootloaderItem.target = self
         menu.addItem(bootloaderItem)
         menu.addItem(.separator())
+        launchAtLoginItem = NSMenuItem(title: "Запускать при входе", action: #selector(toggleLaunchAtLogin), keyEquivalent: "")
+        launchAtLoginItem.target = self
+        menu.addItem(launchAtLoginItem)
+        menu.addItem(.separator())
         let quitItem = NSMenuItem(title: "Выход", action: #selector(quit), keyEquivalent: "q")
         quitItem.target = self
         menu.addItem(quitItem)
         statusItem.menu = menu
+
+        if !UserDefaults.standard.bool(forKey: "launchAtLoginConfigured") {
+            let service = SMAppService.mainApp
+            if service.status == .notRegistered || service.status == .notFound {
+                if (try? service.register()) != nil {
+                    UserDefaults.standard.set(true, forKey: "launchAtLoginConfigured")
+                }
+            } else {
+                UserDefaults.standard.set(true, forKey: "launchAtLoginConfigured")
+            }
+        }
+        updateLaunchAtLoginItem()
 
         refresh()
         timer = Timer.scheduledTimer(withTimeInterval: 15, repeats: true) { [weak self] _ in
@@ -50,7 +68,34 @@ final class BatteryApp: NSObject, NSApplicationDelegate {
         refresh()
     }
 
+    @objc private func toggleLaunchAtLogin() {
+        let service = SMAppService.mainApp
+        do {
+            switch service.status {
+            case .notRegistered, .notFound:
+                try service.register()
+            case .enabled:
+                try service.unregister()
+            case .requiresApproval:
+                SMAppService.openSystemSettingsLoginItems()
+            @unknown default:
+                SMAppService.openSystemSettingsLoginItems()
+            }
+            UserDefaults.standard.set(true, forKey: "launchAtLoginConfigured")
+            updateLaunchAtLoginItem()
+        } catch {
+            launchAtLoginItem.title = "Не удалось изменить автозапуск — повторить"
+        }
+    }
+
+    private func updateLaunchAtLoginItem() {
+        let status = SMAppService.mainApp.status
+        launchAtLoginItem.title = status == .requiresApproval ? "Разрешить запуск при входе…" : "Запускать при входе"
+        launchAtLoginItem.state = status == .enabled ? .on : .off
+    }
+
     @objc private func refresh() {
+        updateLaunchAtLoginItem()
         guard let report = device.read() else {
             statusItem.button?.title = "Л — · П —"
             leftItem.title = "Левая: —"
